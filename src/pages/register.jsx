@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import "./register.css";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export const Register = (()=>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isPasswordVisible, setPasswordVisible] = useState(false);
+    const [isConfirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   
     const handleLogin = () => {
       // Handle login logic here
@@ -17,6 +20,17 @@ export const Register = (()=>{
       // Handle registration logic here
       console.log('Registering with email:', email, 'and password:', password);
     };
+
+    const showPassword = () => {
+
+        setPasswordVisible(!isPasswordVisible);
+       
+    }
+
+    const showConfirmPassword = () => {
+
+        setConfirmPasswordVisible(!isConfirmPasswordVisible);
+    }
 
     return(
     <>
@@ -79,15 +93,23 @@ export const Register = (()=>{
         <div className='registerPageFormContentPasswordContent'>
         <div className='registerPageFormContentPassword'>
           <input
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             id="registerPageFormContentPassword"
             placeholder='&#xf023;   Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
      
-          <VisibilityOutlinedIcon style={{color:"#828282", fontSize: 20 }}/>
+         {
+            isPasswordVisible ? 
+            (<VisibilityOutlinedIcon onClick = {showPassword} style={{color:"#828282", fontSize: 20 }}/>)
+            
+         :
+         (<VisibilityOffIcon onClick = {showPassword} style={{color:"#828282", fontSize: 20 }}/>)
+         
       
+         }
+
         </div>
 
         <p id = "registerPageFormContentPasswordError">js;fls;fds</p>
@@ -97,14 +119,22 @@ export const Register = (()=>{
         <div className='registerPageFormContentConfirmPasswordContent'>
         <div className='registerPageFormContentConfirmPassword'>
           <input
-            type="password"
+            type={isConfirmPasswordVisible ? "text" : "password"}
             id="registerPageFormContentConfirmPassword"
             placeholder='&#xf023;   Confirm Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
      
-          <VisibilityOutlinedIcon style={{color:"#828282", fontSize: 20 }}/>
+     {
+        isConfirmPasswordVisible ? 
+            (<VisibilityOutlinedIcon onClick = {showConfirmPassword} style={{color:"#828282", fontSize: 20 }}/>)
+            
+         :
+         (<VisibilityOffIcon onClick = {showConfirmPassword} style={{color:"#828282", fontSize: 20 }}/>)
+         
+      
+         }
       
         </div>
 

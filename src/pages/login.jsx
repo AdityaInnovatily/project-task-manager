@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import "./login.css";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export const Login = (()=>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [isPasswordVisible, setPasswordVisible] = useState(false);
   
     const handleLogin = () => {
       // Handle login logic here
@@ -17,6 +20,13 @@ export const Login = (()=>{
       // Handle registration logic here
       console.log('Registering with email:', email, 'and password:', password);
     };
+
+    const showPassword = () => {
+
+        setPasswordVisible(!isPasswordVisible);
+       
+    }
+
 
     return(
     <>
@@ -62,15 +72,22 @@ export const Login = (()=>{
         <div className='loginPageFormContentPasswordContent'>
         <div className='loginPageFormContentPassword'>
           <input
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             id="loginPageFormContentPassword"
             placeholder='&#xf023;   Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
      
-          <VisibilityOutlinedIcon style={{color:"#828282", fontSize: 20 }}/>
+     {
+            isPasswordVisible ? 
+            (<VisibilityOutlinedIcon onClick = {showPassword} style={{color:"#828282", fontSize: 20 }}/>)
+            
+         :
+         (<VisibilityOffIcon onClick = {showPassword} style={{color:"#828282", fontSize: 20 }}/>)
+         
       
+         }
         </div>
 
         <p id = "loginPageFormContentPasswordError"></p>
