@@ -1,0 +1,146 @@
+.loginPage,
+.loginPageContent,
+.loginPageImage,
+.loginPageForm,
+.loginPageFormContent,
+.loginPageFormContentEmail,
+.loginPageFormContentPassword,
+.loginPageFormContentButtons,
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginPage{
+    width: 100vw;
+    height: 100vh;
+}
+
+.loginPageContent{
+    /* border:solid blue; */
+    /* padding: 10px; */
+    width:100%;
+    height: 100%;
+   
+}
+
+
+.loginPageImage{
+    width: 50%;
+    height: 100%;
+    /* border: solid red; */
+}
+
+.loginPageImage img{
+    width: 100%; /* Set the width of the image to 100% of the container */
+    height: 100%; /* Set the height of the image to 100% of the container */
+    object-fit: fill;
+}
+
+.loginPageForm {
+    width: 50%;
+    height: 100%;
+    /* border: solid green; */
+    flex-direction: column;
+}
+
+.loginPageFormContent{
+    /* border: solid red; */
+    width: 100%;
+    height: 80%;
+    flex-direction: column;
+}
+
+.loginPageFormContentHeader{
+    font-family: "openSans";
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.form{
+    /* border: solid red; */
+    height: 40vh;
+    flex-direction: column;
+    /* align-items: start; */
+    row-gap: 20px;
+}
+
+
+.loginPageFormContentEmail,
+.loginPageFormContentPassword{
+    width:30vw;
+    height:5vh;
+    margin: 5px 0px;
+    border: 1px solid #828282;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    justify-content: space-around;
+}
+
+
+#loginPageFormContentEmail,
+#loginPageFormContentPassword{
+    width: 80%;
+    border: none;
+}
+
+input:focus{
+ outline: none;
+}
+
+#loginPageFormContentEmail::placeholder {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f0e0'; /* Use the Unicode value of the Font Awesome icon */
+    font-weight: 900;
+  }
+
+  #loginPageFormContentPassword::placeholder {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f023'; 
+    font-weight: 900;    
+  }
+
+
+  #loginPageFormContentEmailError,
+  #loginPageFormContentPasswordError{
+    /* border: 1px solid red; */
+    text-align: start;
+    font-size: 12px;
+    margin: 0 0 10px 0;
+    color: red;
+  }
+
+  .loginPageFormContentButtons{
+    flex-direction: column;
+    /* row-gap: 10px; */    
+  }
+
+  .loginPageFormContentLoginButton,
+  .loginPageFormContentRegisterButton{
+    width:30vw;
+    height:30px;
+    /* margin: 5px 0px; */
+    background: #17A2B8;
+    border-radius: 15px;
+    color: #ffffff;
+    border: none;
+    font-size: 14px;
+
+  }
+
+  .loginPageFormContentRegisterButton{
+
+    background: #ffffff;
+    color: #17A2B8;
+    border: 1px solid #17A2B8;
+  }
+
+  #loginPageFormContentHaveNoAccountYet{
+    color : #828282;
+    /* border: solid green; */
+  }
+
+  
+
