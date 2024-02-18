@@ -6,6 +6,8 @@ import Trial from './pages/trial';
 import { Login } from './pages/login';
 import { Register } from './pages/register';
 import SideBar from './components/sideBar';
+import { Analytics } from './pages/analytics';
+import { Settings } from './pages/settings';
 
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<SideBar/>} />
-     
+        <Route path="/analytics" element= {<Analytics/>} />
+        <Route path="/settings" element= {<Settings/>} />
+  
       </Routes>
     </BrowserRouter>
 

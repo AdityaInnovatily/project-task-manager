@@ -1,0 +1,55 @@
+
+
+.analyticsPage{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    /* border:solid blue; */
+}
+
+.analyticsPageContentHeader{
+    display: flex;
+    justify-content: start;
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+.analyticsPageContentLeftRight{
+    display: flex;
+    justify-content: space-around;
+    width: 75vw;
+    /* border:solid green; */
+   
+}
+
+.analyticsPageLeft,
+.analyticsPageRight{
+    width: 35vw;
+    height: 40vh;
+    /* border:solid red; */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #F9FCFF;
+
+}
+
+.analyticsPageLeftInner{
+    display: flex;
+    justify-content: space-between;
+    /* border: solid red; */
+    width: 90%;
+}
+
+.analyticsPageLeftInnerLeft{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 7px;
+    /* border: solid red; */
+    
+}
+  

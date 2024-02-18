@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import "./register.css";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 
 export const Register = (()=>{
 
@@ -75,7 +76,7 @@ export const Register = (()=>{
             <div className='registerPageFormContentEmailContent'>
             <div className='registerPageFormContentEmail'>
           <input
-            type="email"
+            type="text"
             id="registerPageFormContentEmail"
             placeholder='&#xf0e0;   Email'
             value={email}
@@ -95,7 +96,7 @@ export const Register = (()=>{
           <input
             type={isPasswordVisible ? "text" : "password"}
             id="registerPageFormContentPassword"
-            placeholder='&#xf023;   Password'
+            placeholder='&#xf023;  Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

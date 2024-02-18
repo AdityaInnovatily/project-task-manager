@@ -35,13 +35,13 @@ export default function SideBar(){
     <div className = "navbarPage">
 
     <div className="navbarHeader">
-    <div id= "navbarHeader"> <ViewInArOutlinedIcon/> Pro Manage</div>
+    <div id= "navbarHeader"> <ViewInArOutlinedIcon/>Pro Manage</div>
     </div>
 
 <div className="navbarSidebar">
   <div id = "board" onClick = {()=>{navigate("/")}}><SpaceDashboardOutlinedIcon/> Board</div>
   <div id = "analytics" onClick = {()=>{navigate("/analytics")}}><StorageOutlinedIcon/> Analytics</div>
-  <div id = "settings" onClick = {()=>{navigate("/createQuiz",{state:{
+  <div id = "settings" onClick = {()=>{navigate("/settings",{state:{
               editQuizId:"",
               editQuizName:"",
               editQuizType:""

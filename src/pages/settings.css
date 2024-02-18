@@ -1,0 +1,24 @@
+
+.settingsPage{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    column-gap: 20px;
+}
+
+.settingsPageContent{
+    /* border:solid red; */
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+#settingsPageContentHeader{
+    text-align: start;
+    font-weight: bold;
+    /* border: solid blue; */
+    margin-top: 25px;
+    font-family: "openSans";
+    font-size: 20px;
+}
