@@ -1,0 +1,56 @@
+.logoutPage{
+    width:100vw;
+    height:100vh;
+    background: #303D438C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.logoutContent{
+    width:25vw;
+    height:25vh;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 30px;
+    background-color: #ffffff;
+
+}
+
+.logoutContentHeader{
+    font-family: Noto Sans;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: center;
+    
+}
+
+.logoutContentButtonDelete,
+.logoutContentButtonCancel{
+    width:20vw;
+    height:40px;
+    margin: 4px 0px;     
+    background: #17A2B8;
+    border-radius: 15px;
+    color: #ffffff;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+
+
+}
+
+.logoutContentButtonCancel{
+    background: #ffffff;
+    color: red;
+    border: 1px solid red;
+}
+

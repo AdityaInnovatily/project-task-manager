@@ -1,35 +1,30 @@
 import "./sideBar.css";
 import { useNavigate } from "react-router-dom";
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import ViewInArOutlinedIcon from '@mui/icons-material/ViewInArOutlined';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { Logout } from "./logout";
+
 
 export default function SideBar(){
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //   const checkLoginStatus = async () => {
-    //     if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
-    //       navigate("/login");
-    //     }
-    //   };
-  
-    //   checkLoginStatus();
-    // }, [navigate]);
+    const [isLogoutComponentPopup, setLogoutComponentPopup] = useState(false);
+
     
-    const handleClick = async () => {
+    const handleLogoutButton = async () => {
       console.log('clicked');
      
-      let localStorageKey = process.env.REACT_APP_LOCALHOST_KEY;
-      localStorage.removeItem(localStorageKey);
-    
-      navigate("/login");
+      setLogoutComponentPopup(true);
      
     };
+
+
+
     
     return <>
     <div className = "navbarPage">
@@ -54,9 +49,12 @@ export default function SideBar(){
 
 
     
-    <div id= "logOutBtn" onClick={handleClick}> <LogoutOutlinedIcon/>Log out</div>
+    <div id= "logOutBtn" onClick={handleLogoutButton}> <LogoutOutlinedIcon/>Log out</div>
 
-   
+    {isLogoutComponentPopup && (
+        
+      <Logout/>
+      )}
     </div>
 
 </div>

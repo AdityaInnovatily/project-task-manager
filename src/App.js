@@ -8,6 +8,9 @@ import { Register } from './pages/register';
 import SideBar from './components/sideBar';
 import { Analytics } from './pages/analytics';
 import { Settings } from './pages/settings';
+import Delete from './components/delete';
+import { Logout } from './components/logout';
+import { CreateTask } from './components/createTask';
 
 
 function App() {
@@ -18,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<SideBar/>} />
+        <Route path="/" element={<CreateTask/>} />
         <Route path="/analytics" element= {<Analytics/>} />
         <Route path="/settings" element= {<Settings/>} />
   
