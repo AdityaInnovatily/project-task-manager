@@ -14,7 +14,7 @@
 
 .createTaskPageContent{
   width:45vw;
-  height:50vh;
+  height:60vh;
   border-radius: 15px;
   display: flex;
   /* justify-content: center; */
@@ -23,15 +23,23 @@
   /* row-gap: 30px; */
   background-color: #ffffff;
   position: relative;
-  padding:10px 20px;
+  padding:10px;
+  /* border:solid red; */
 
 }
 
 .createTaskPageContentHeader{
-    width:100%;
+    width:98%;
     text-align: start;
-    /* border:solid red; */
-    margin:8px 0px;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: left;
+    /* border: solid green; */
+    
+
 }
 
 span{
@@ -39,17 +47,20 @@ span{
 }
 
 .createTaskPageContentTitleInput{
-    width:100%;
-
+    position: absolute;
+    width:98%;
+    top:45px;
+    /* border:solid gold; */
+    
 }
 
 #createTaskPageContentTitleInput{
-    width: 100%;
+    width: 95%;
     height:30px;
     border-radius: 5px;
     border:none;
     box-shadow: 0px 0px 2px 2px #4D40551A;
-    /* padding:5px 25px; */
+    /* padding:5px; */
 }
 
 #createTaskPageContentTitleInput::placeholder {
@@ -58,11 +69,134 @@ span{
   }
 
 .createTaskPageContentSelectPriority{
-    width:100%;
-    border:solid red;
+    position: absolute;
+    width:95%;
+    height:35px;
+    top:95px;
+    /* border:solid red; */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* padding:0 5px; */
+}
+
+.createTaskPageContentSelectPriorityText{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: left;
+    
+}
+
+.createTaskPageContentSelectPriorityRadioButtons{
+    /* border: solid green; */
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.createTaskPageContentSelectPriorityRadioButton1,
+.createTaskPageContentSelectPriorityRadioButton2,
+.createTaskPageContentSelectPriorityRadioButton3{
+    height:22px;
+    border-radius: 5px;
+    border: 1px solid #E2E2E2;
+    text-align:center;
+    /* padding: auto; */
+    background-color: white;
+
+}
+
+.createTaskPageContentCheckList{
+    /* border:solid blue; */
+    position: absolute;
+    top: 150px;
+    width:95%;
+    height:50%;
+    text-align: start;
+}
+
+.createTaskPageContentCheckListText{
+font-family: Inter;
+font-size: 14px;
+font-weight: 400;
+line-height: 17px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.createTaskPageContentCheckListItems{
+    /* border: solid yellowgreen; */
+    width: 100%;
+    height:auto;
+    max-height: 75%;
+    padding:10px 0px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+    overflow-y: auto;
+}
+
+
+
+#createTaskPageContentCheckListItem{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    width:90%;
+    height: 35px;
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+
+  
+}
+
+
+.createTaskPageContentCheckListItemCheckBox{
+    width:20px;
+    height: 30px;
+    /* background-color: #17A2B8; */
+}
+
+
+
+
+ 
+.createTaskPageContentCheckListItemTextArea{
+    border:none;
+    width: 80%;
+    height:30px;
+}
+
+
+
+.createTaskPageContentCheckListItemDeleteButton{
+
+    color: #CF3636
+}
+
+.createTaskPageContentCheckListItemAddButton{
+    font-size: 18px;
+    border:none;
+    background-color: #ffffff;
+    color: #767575;
+    margin-left: 25px;
+
+}
+
+.createTaskPageContentCheckListItemAddButton span{
+    color: #767575;
+    font-size: 20px;
+
 }
 
 
@@ -93,6 +227,16 @@ span{
     background: #ffffff;
     color: #707070;
     border: 1px solid #E2E2E2;
+    /* border:none; */
+    text-align: center;
+    font-weight: light;
+}
+
+
+
+.datePicker{
+    border:none;
+    /* width: 100px; */
 }
 
 #createTaskPageContentButtonCancel{

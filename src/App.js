@@ -22,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<CreateTask/>} />
+        {/* <Route path="/" element={<Trial/>} /> */}
         <Route path="/analytics" element= {<Analytics/>} />
         <Route path="/settings" element= {<Settings/>} />
   
