@@ -132,15 +132,13 @@ export const CreateTask = (()=>{
         <div className="createTaskPageContentDateAndButtons">
 
             <div className="createTaskPageContentDate">
-                {/* <button id= "createTaskPageContentDate"> */}
-               
+              
                 <DatePicker 
                 placeholderText="Select Due Date"
                 id="createTaskPageContentDate"
-                // style={{ backgroundColor:"#41054c", border: "1px solid red", width:"100px", height:"100px" }}
                 selected={startDate} 
                 onChange={(date) => setStartDate(date)} />
-                {/* </button> */}
+             
             </div>
 
             <div className="createTaskPageContentButtons">

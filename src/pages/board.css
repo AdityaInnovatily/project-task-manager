@@ -1,0 +1,93 @@
+
+.boardPage{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    column-gap: 20px;
+}
+
+.boardPageContent{
+    border:solid red;
+    width:100%;
+    /* height:100vh; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.boardPageContentHeader1,
+.boardPageContentHeader2,
+.boardPageContentMainBacklogHeader,
+.boardPageContentMainTodoHeader,
+.boardPageContentMainInProgressHeader,
+.boardPageContentMainDoneHeader,
+.boardPageContentMainTodoHeaderRight
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:10px;
+    /* border:solid green; */
+}
+
+.boardPageContentMain{
+    /* border:solid blue; */
+    width:85vw;
+    overflow: auto;
+    height:90%;
+    margin:10px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    column-gap: 15px;
+}
+
+.boardPageContentMainBacklog,
+.boardPageContentMainTodo,
+.boardPageContentMainInProgress,
+.boardPageContentMainDone
+{
+    width:29%;
+    height:98%;
+    border-radius: 12px;
+    background-color: #E0E0E0;
+    /* border:solid green; */
+}
+
+.boardPageContentMainTodoHeaderRight{
+    /* border:solid red; */
+    width:20%;
+}
+
+.boardPageContentMainTodoHeaderAddButton{
+    font-size: 30px;
+}
+
+
+.boardPageContentMainBacklogCardList,
+.boardPageContentMainTodoCardList,
+.boardPageContentMainInProgressCardList,
+.boardPageContentMainDoneCardList
+{
+    margin:10px;
+    height:88%;
+    overflow-y: auto;
+    /* border:solid yellow; */
+    display: flex;
+    justify-content: start;
+    text-align: center;
+    flex-direction: column;
+    row-gap: 15px;
+
+}
+
+.boardPageContentMainBacklogCard,
+.boardPageContentMainTodoCard,
+.boardPageContentMainInProgressCard,
+.boardPageContentMainDoneCard
+{
+    margin:5px;
+    /* border:solid yellow; */
+}
+
+

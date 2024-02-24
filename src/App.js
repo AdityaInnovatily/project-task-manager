@@ -11,6 +11,8 @@ import { Settings } from './pages/settings';
 import Delete from './components/delete';
 import { Logout } from './components/logout';
 import { CreateTask } from './components/createTask';
+import { Card } from './components/card';
+import { Board } from './pages/board';
 
 
 function App() {
@@ -21,8 +23,8 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<CreateTask/>} />
-        {/* <Route path="/" element={<Trial/>} /> */}
+        <Route path="/" element={<Board/>} />
+        <Route path="/card" element={<Card/>} />
         <Route path="/analytics" element= {<Analytics/>} />
         <Route path="/settings" element= {<Settings/>} />
   
