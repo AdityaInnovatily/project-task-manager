@@ -190,4 +190,6 @@ text-align: center;
     justify-content: center;
     background-color:red;
     color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
 }

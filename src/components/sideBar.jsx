@@ -19,11 +19,14 @@ export default function SideBar(){
     const handleLogoutButton = async () => {
       console.log('clicked');
      
-      setLogoutComponentPopup(true);
+      setLogoutComponentPopup(!isLogoutComponentPopup);
      
     };
 
 
+    const handleCancelButton = () => {
+      setLogoutComponentPopup(false);
+    };
 
     
     return <>
@@ -50,11 +53,14 @@ export default function SideBar(){
 
     
     <div id= "logOutBtn" onClick={handleLogoutButton}> <LogoutOutlinedIcon/>Log out</div>
-
+{/* 
     {isLogoutComponentPopup && (
         
       <Logout/>
-      )}
+      )} */}
+
+      {isLogoutComponentPopup && <Logout onCancel={handleCancelButton} />}
+      
     </div>
 
 </div>

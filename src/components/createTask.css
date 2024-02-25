@@ -9,6 +9,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 
 
@@ -99,9 +100,7 @@ span{
 
 }
 
-.createTaskPageContentSelectPriorityRadioButton1,
-.createTaskPageContentSelectPriorityRadioButton2,
-.createTaskPageContentSelectPriorityRadioButton3{
+.createTaskPageContentSelectPriorityRadioButton{
     height:22px;
     border-radius: 5px;
     border: 1px solid #E2E2E2;
@@ -110,6 +109,14 @@ span{
     background-color: white;
 
 }
+
+.createTaskPageContentSelectPriorityRadioButton.active{
+    
+    background-color: #E2E2E2;
+
+}
+
+
 
 .createTaskPageContentCheckList{
     /* border:solid blue; */

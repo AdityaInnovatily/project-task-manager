@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import "./logout.css";
 
 export const Logout = (()=>{
+
+    const [divStyle, setDivStyle] = useState({});
+
+    const handleCancel = () => {
+      setDivStyle({ display: 'none' });
+    };
     
     return(
         <>
 
-    <div className="logoutPage">
+    <div className="logoutPage" style={divStyle}>
 
         <div className="logoutContent">
             <div className="logoutContentHeader">
@@ -14,7 +20,7 @@ export const Logout = (()=>{
             </div>
             <div className="logoutContentButtons">
                 <button className="logoutContentButtonDelete">Yes, Logout</button>
-                <button className="logoutContentButtonCancel">Cancel</button>
+                <button className="logoutContentButtonCancel" onClick = {handleCancel}>Cancel</button>
             </div>
         </div>
     </div>

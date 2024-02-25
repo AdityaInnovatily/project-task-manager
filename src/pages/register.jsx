@@ -1,26 +1,146 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import "./register.css";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {registerRoute} from "../APIRoutes";
+import { useNavigate, Link } from "react-router-dom";
+
 export const Register = (()=>{
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
+ 
+  const navigate = useNavigate();
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 1500,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  
+
+
+  useEffect(() => {
+    if (localStorageUserDetails) {  
+
+      navigate("/");
+    }
+  }, []);
+
+  const handleChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+    // console.log(event.target.value, values);
+  };
+
+  const handleValidation = () => {
+    console.log("values",values);
+
+    const { password, confirmPassword, name, email } = values;
+
+    console.log("pas",name,email,password,confirmPassword);
+    if (password !== confirmPassword) {
+      setPasswordError("Password and Confirm password must be same");
+      setConfirmPasswordError("Password and Confirm password must be same");
+
+      return false;
+    }else{
+      setPasswordError("");
+      setConfirmPasswordError("");
+    }
+
+     if (name.length < 3) {
+      setNameError("username should be greater than 3 characters.");
+      return false;
+    } 
+    else{
+      setNameError("");
+    }
+
+     if (password.length < 8) {
+
+      setPasswordError("Password must be equal or greater than 8 characters")
+     
+      return false;
+    }else{
+      setPasswordError("");
+    }
+
+     if (email == "") {
+
+      setEmailError("Email is required");
+      return false;
+    }
+    else{
+      setEmailError("");
+    }
+
+    return true;
+
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    if (handleValidation()) {
+      const { email, name, password } = values;
+
+      const response  = await fetch(registerRoute, {
+        method: 'POST',
+        headers: {
+          // Authorization: `Bearer ${localStorageUserDetails.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password
+        }),
+      });
+
+        let data = await response.json();
+
+        if(data.msg){
+            toast.error(data.msg,toastOptions);
+        }else{
+
+          // localStorage.setItem(
+          //   process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY,
+          //   JSON.stringify(data)
+          // );
+
+          toast.error("successfully registered", toastOptions);
+
+          setTimeout(()=>{
+
+            navigate("/login");
+
+          },1000);
+         
+        }
+          
+    }
+  };
+
+
     const [isPasswordVisible, setPasswordVisible] = useState(false);
     const [isConfirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  
-    const handleLogin = () => {
-      // Handle login logic here
-      console.log('Logging in with email:', email, 'and password:', password);
-    };
-  
-    const handleRegister = () => {
-      // Handle registration logic here
-      console.log('Registering with email:', email, 'and password:', password);
-    };
 
     const showPassword = () => {
 
@@ -62,14 +182,14 @@ export const Register = (()=>{
             type="text"
             id="registerPageFormContentName"
             placeholder='&#xf007;   Name'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name = "name"
+            onChange={(e) => handleChange(e)}
           />
            <VisibilityOutlinedIcon style={{color:"#ffffff", fontSize: 20 }}/>
       
         </div>
        
-        <p id = "registerPageFormContentNameError">js;fls;fds</p>
+        <p id = "registerPageFormContentNameError">{nameError}</p>
       
         </div>
 
@@ -79,14 +199,14 @@ export const Register = (()=>{
             type="text"
             id="registerPageFormContentEmail"
             placeholder='&#xf0e0;   Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name = "email"
+            onChange={(e) => handleChange(e)}
           />
            <VisibilityOutlinedIcon style={{color:"#ffffff", fontSize: 20 }}/>
       
         </div>
        
-        <p id = "registerPageFormContentEmailError">js;fls;fds</p>
+        <p id = "registerPageFormContentEmailError">{emailError}</p>
       
         </div>
 
@@ -97,8 +217,8 @@ export const Register = (()=>{
             type={isPasswordVisible ? "text" : "password"}
             id="registerPageFormContentPassword"
             placeholder='&#xf023;  Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            onChange={(e) => handleChange(e)}
           />
      
          {
@@ -113,7 +233,7 @@ export const Register = (()=>{
 
         </div>
 
-        <p id = "registerPageFormContentPasswordError">js;fls;fds</p>
+        <p id = "registerPageFormContentPasswordError">{passwordError}</p>
       
         </div>
 
@@ -123,8 +243,8 @@ export const Register = (()=>{
             type={isConfirmPasswordVisible ? "text" : "password"}
             id="registerPageFormContentConfirmPassword"
             placeholder='&#xf023;   Confirm Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name = "confirmPassword"
+            onChange={(e) => handleChange(e)}
           />
      
      {
@@ -139,7 +259,7 @@ export const Register = (()=>{
       
         </div>
 
-        <p id = "registerPageFormContentConfirmPasswordError">js;fls;fds</p>
+        <p id = "registerPageFormContentConfirmPasswordError">{confirmPasswordError}</p>
       
         </div>
 
@@ -147,12 +267,12 @@ export const Register = (()=>{
 
 
         <div className='registerPageFormContentButtons'>
-        <button type = "button" className="registerPageFormContentRegisterButton" onClick={handleRegister}>
+        <button type = "button" className="registerPageFormContentRegisterButton" onClick={handleSubmit}>
             Register
           </button>
          
           <p id= "registerPageFormContentHaveNoAccountYet">Have an account ?</p>
-          <button type = "button" className="registerPageFormContentLoginButton" onClick={handleLogin}>
+          <button type = "button" className="registerPageFormContentLoginButton" onClick={()=>{navigate('/login')}}>
             Log in
           </button>
 
@@ -165,7 +285,8 @@ export const Register = (()=>{
 
         </div>
     </div>
-
+        
+        <ToastContainer/>
     </>
 
     )

@@ -1,31 +1,123 @@
-import React, {useState} from 'react';
-import ReactDOM from 'react-dom/client';
+import React, {useState, useEffect} from 'react';
 import "./login.css";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { loginRoute } from '../APIRoutes';
+
 
 export const Login = (()=>{
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
+  const [values, setValues] = useState({ email: "", password: "" });
+  const [emailErorr, setEmailError] = useState("");
+  const [passwordErorr, setPasswordError] = useState("");
+  
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 1500,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+
+      navigate("/");
+    }
+  }, []);
+
+  const handleChange = (event) => {
+
+    setValues({ ...values, [event.target.name]: event.target.value });
+
+  };
+
+  const validateForm = () => {
+    const { email, password } = values;
+    if (email === "") {
+
+      setEmailError("Email is required");
+      // toast.error("Email is required.", toastOptions);
+      return false;
+
+    } else{
+
+        setEmailError("");
+
+    } 
+    
+    if (password === "") {
+
+      setPasswordError("Password is required");
+      // toast.error("Password is required.", toastOptions);
+      return false;
+
+    }
+    else{
+      setPasswordError("");
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      const { email, password } = values;
+     
+      console.log("finalSubmit payload",email,password);
+      const response  = await fetch(loginRoute, {
+        method: 'POST',
+        headers: {
+          // Authorization: `Bearer ${localStorageUserDetails.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        }),
+      });
+
+
+        let data = await response.json();
+
+      if(data.msg){
+
+        toast.error(
+          data.msg,
+          toastOptions
+        );
+      }else{
+        localStorage.setItem(
+          process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY,
+          JSON.stringify(data)
+        );
+
+        toast.error("Welcome To Task Manager", toastOptions);
+
+        setTimeout(()=>{
+
+          navigate("/");
+
+        },1500);
+      }
+      
+    }
+  };
+   
     const [isPasswordVisible, setPasswordVisible] = useState(false);
-  
-    const handleLogin = () => {
-      // Handle login logic here
-      console.log('Logging in with email:', email, 'and password:', password);
-    };
-  
-    const handleRegister = () => {
-      // Handle registration logic here
-      console.log('Registering with email:', email, 'and password:', password);
-    };
+
 
     const showPassword = () => {
 
         setPasswordVisible(!isPasswordVisible);
-       
     }
+
 
 
     return(
@@ -57,14 +149,15 @@ export const Login = (()=>{
             type="email"
             id="loginPageFormContentEmail"
             placeholder='&#xf0e0;   Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name = "email"
+            // value={email}
+            onChange={(e) => handleChange(e)}
           />
            <VisibilityOutlinedIcon style={{color:"#ffffff", fontSize: 20 }}/>
       
         </div>
        
-        <p id = "loginPageFormContentEmailError"></p>
+        <p id = "loginPageFormContentEmailError">{emailErorr}</p>
       
         </div>
 
@@ -75,8 +168,9 @@ export const Login = (()=>{
             type={isPasswordVisible ? "text" : "password"}
             id="loginPageFormContentPassword"
             placeholder='&#xf023;   Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name = "password"
+            // value={password}
+            onChange={(e) => handleChange(e)}
           />
      
      {
@@ -90,7 +184,7 @@ export const Login = (()=>{
          }
         </div>
 
-        <p id = "loginPageFormContentPasswordError"></p>
+        <p id = "loginPageFormContentPasswordError">{passwordErorr}</p>
       
         </div>
 
@@ -98,11 +192,11 @@ export const Login = (()=>{
 
 
         <div className='loginPageFormContentButtons'>
-          <button type = "button" className="loginPageFormContentLoginButton" onClick={handleLogin}>
+          <button type = "button" className="loginPageFormContentLoginButton" onClick={handleSubmit}>
             Log in
           </button>
           <p id= "loginPageFormContentHaveNoAccountYet">Have no account yet?</p>
-          <button type = "button" className="loginPageFormContentRegisterButton" onClick={handleRegister}>
+          <button type = "button" className="loginPageFormContentRegisterButton" onClick={()=>{navigate("/register")}}  >
             Register
           </button>
         </div>
@@ -114,6 +208,8 @@ export const Login = (()=>{
 
         </div>
     </div>
+
+    <ToastContainer />
 
     </>
 

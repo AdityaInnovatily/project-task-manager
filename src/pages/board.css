@@ -30,6 +30,21 @@
     /* border:solid green; */
 }
 
+.boardPageContentHeader2DropDown{
+width: 120px;
+height: 30px;
+padding: 0px, 3.67px, 0px, 3.67px;
+border:solid green;
+display: flex;
+justify-content: center;
+align-items: center;
+/* border: 1.1px solid #767575; */
+background: #EEECEC;
+font-size: 15px;
+
+}
+
+
 .boardPageContentMain{
     /* border:solid blue; */
     width:85vw;
@@ -47,7 +62,7 @@
 .boardPageContentMainInProgress,
 .boardPageContentMainDone
 {
-    width:29%;
+    width:380px;
     height:98%;
     border-radius: 12px;
     background-color: #E0E0E0;
