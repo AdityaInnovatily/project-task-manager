@@ -27,7 +27,7 @@ export const Analytics = (()=>{
 <div className="analyticsPageLeftInner">
     <div className="analyticsPageLeftInnerLeft">
     <CircleIcon style = {{ color:"#90C4CC",fontSize: 15}}/>
-    <p id = "analyticsType">Backing Tasks</p>
+    <p id = "analyticsType">Backlog Tasks</p>
     </div>
 
     <p id = "analyticsTypeValue">00</p>

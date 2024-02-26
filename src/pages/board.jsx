@@ -29,10 +29,8 @@ export const Board = (()=>{
     const [isCreateTaskOpen, setCreateTaskOpen] =  useState(false);
     const [sortedBy, setShortedBy] =  useState("This Week");
     const [taskList, setTaskList] =  useState([]);
-    const [backlogTaskList, setBacklogTaskList] =  useState([]);
-    const [todoTaskList, setTodoTaskList] =  useState([]);
-    const [inProgressTaskList, setInProgressTaskList] =  useState([]);
-    const [doneTaskList, setDoneTaskList] =  useState([]);
+    const [updatedStatus, setUpdatedStatus] =  useState("");
+    const [taskIdForCreateTask, setTaskIdForCreateTask]= useState("");
 
 
     const handleShowSorting = (()=>{
@@ -43,54 +41,53 @@ export const Board = (()=>{
         setCreateTaskOpen(!isCreateTaskOpen);
     });
 
+  
+    const getNewStatus =  (value)=>{
+    
+         setUpdatedStatus(value);
+      
+    }
+  
 
     useEffect(() => {
-        // Fetch task data from the API
-        const fetchTaskList = async () => {
-          try {
-            console.log("sadkf;dsljfs",`${getTaskListApi}/${localStorageUserDetails?.userDetails?._id}`);
-            const response = await fetch(`${getTaskListApi}/${localStorageUserDetails?.userDetails?._id}`, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                // Include any additional headers required for your GET request
-              },
-            });
-    
-            if (!response.ok) {
-              throw new Error('Failed to fetch task data');
-            }
-    
-            const taskListData = await response.json();
-
-            for(let task of taskListData){
-                
-                if(task?.status == "backlog"){
-                setBacklogTaskList([...backlogTaskList,task]);
-                }
-                else if(task?.status == "todo"){
-                    setTodoTaskList([...todoTaskList,task]);
-                }
-                else if(task?.status == "inProgress"){
-                    setInProgressTaskList([...inProgressTaskList,task]);
-                } 
-                else if(task?.status == "done"){
-                    setDoneTaskList([...doneTaskList,task]);
-                }
-                
-            };
-
-            setTaskList([...taskListData]);
-    
-          } catch (error) {
-            console.error('Error fetching quiz data:', error.message);
-          }
-        };
-    
-        fetchTaskList();
+      // Fetch task data from the API
+      const fetchTaskList = async () => {
+        try {
         
-        },[]);
+          const response = await fetch(`${getTaskListApi}/${localStorageUserDetails?.userDetails?._id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              // Include any additional headers required for your GET request
+            },
+          });
+  
+          if (!response.ok) {
+            throw new Error('Failed to fetch task data');
+          }
+  
+          const taskListData = await response.json();
+        
+          setTaskList([...taskListData]);
+
+        } catch (error) {
+          console.error('Error fetching quiz data:', error.message);
+        }
+      };
+  
+      fetchTaskList();
+      setUpdatedStatus("");
+
    
+      },[updatedStatus]);
+   
+   
+    const handleOpenCreateTask2 = (taskId)=>{
+      setTaskIdForCreateTask(taskId);
+      setCreateTaskOpen(!isCreateTaskOpen);
+    
+    }
+
 
     return <>
         <div className="boardPage">
@@ -126,9 +123,11 @@ export const Board = (()=>{
 
                         <div className="boardPageContentMainBacklogCardList">
 
-                        {backlogTaskList.map((item, index) => (
-                             
-                             <div key={index} className="boardPageContentMainBacklogCard">
+                        {taskList.map((item, index) => (
+
+                            item.status === "backlog" ? 
+
+                             (<div key={index} className="boardPageContentMainBacklogCard">
               
                                   <Card   
                                           id = {item?._id}
@@ -137,9 +136,15 @@ export const Board = (()=>{
                                           dueDate={item?.dueDate}
                                           checklist={item?.checklist}
                                           status = {item?.status}
+                                          getNewStatus= { getNewStatus }
+                                          getOpenCreateTask={handleOpenCreateTask2}
                                   /> 
+                                  {/* {console.log("boardgetNewStaus", getNewStatus)} */}
                               </div>
+                          
+                             ) : ""
                           ))}
+
                         </div>
                     </div>
 
@@ -154,13 +159,14 @@ export const Board = (()=>{
                             <ContentCopyIcon/>
                             </div>
                         </div>
-                        {isCreateTaskOpen && (<CreateTask/>)}
+                        {isCreateTaskOpen && (<CreateTask taskId = {taskIdForCreateTask} getNewStatus={getNewStatus}/>)}
 
                         <div className="boardPageContentMainTodoCardList">
 
-
-                        {todoTaskList.map((item, index) => (
+                       
+                        {taskList.map((item, index) => (
                              
+                            item.status === "todo" ? (
                              <div key={index} className="boardPageContentMainTodoCard">
               
                                   <Card   
@@ -170,8 +176,12 @@ export const Board = (()=>{
                                           dueDate={item?.dueDate}
                                           checklist={item?.checklist}
                                           status = {item?.status}
+                                          getNewStatus={getNewStatus}
+                                          getOpenCreateTask={handleOpenCreateTask2}
+
                                   /> 
                               </div>
+                            ): ""
                           ))}
                         </div>
                     </div>
@@ -185,8 +195,10 @@ export const Board = (()=>{
                         </div>
 
                         <div className="boardPageContentMainInProgressCardList">
-                        {inProgressTaskList.map((item, index) => (
+
+                        {taskList.map((item, index) => (
                              
+                            item.status === "inProgress" ? (
                              <div key={index} className="boardPageContentMainInProgressCard">
               
                                   <Card   
@@ -196,8 +208,12 @@ export const Board = (()=>{
                                           dueDate={item?.dueDate}
                                           checklist={item?.checklist}
                                           status = {item?.status}
+                                          getNewStatus={getNewStatus}
+                                          getOpenCreateTask={handleOpenCreateTask2}
+
                                   /> 
                               </div>
+                            ): ""
                           ))}
 
                            
@@ -214,8 +230,11 @@ export const Board = (()=>{
                         </div>
 
                         <div className="boardPageContentMainDoneCardList">
-                        {doneTaskList.map((item, index) => (
+
+
+                        {taskList.map((item, index) => (
                              
+                            item.status === "done" ? (
                              <div key={index} className="boardPageContentMainDoneCard">
               
                                   <Card   
@@ -225,8 +244,13 @@ export const Board = (()=>{
                                           dueDate={item?.dueDate}
                                           checklist={item?.checklist}
                                           status = {item?.status}
+                                          getNewStatus={getNewStatus}
+                                          getOpenCreateTask={handleOpenCreateTask2}
+
                                   /> 
                               </div>
+                            ):""
+                              
                           ))}
                         </div>
                     </div>

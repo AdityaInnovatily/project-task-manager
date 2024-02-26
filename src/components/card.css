@@ -160,12 +160,14 @@ background: #EEECEC;
     height:25px;
     text-align: left;
     /* border: solid green; */
+    
 }
 
 
 
 .cardPageContentFooterExpiryDate,
 #cardPageContentFooterStatusBacklog,
+#cardPageContentFooterStatusTodo,
 #cardPageContentFooterStatusProgress,
 #cardPageContentFooterStatusDone{
 width: 58px;
@@ -176,6 +178,7 @@ gap: 10px;
 background: #EEECEC;
 border: none;
 margin: 0 4px;
+/* border:solid yellow; */
 
 font-family: Poppins;
 font-size: 8px;
@@ -188,8 +191,14 @@ text-align: center;
 
 .cardPageContentFooterExpiryDate{
     justify-content: center;
-    background-color:red;
-    color: #ffffff;
-    font-size: 12px;
+    /* background-color:red;
+     */
+    background-color: #DBDBDB;
+    color: #5A5A5A;
+    font-size: 10px;
     font-weight: bold;
+}
+
+.cardPageContentFooterStatusButton{
+
 }
