@@ -27,10 +27,13 @@ export const Board = (()=>{
     
     const [showSorting, setShowSorting] =  useState(false);
     const [isCreateTaskOpen, setCreateTaskOpen] =  useState(false);
-    const [sortedBy, setShortedBy] =  useState("This Week");
+    const [sortedBy, setSortedBy] =  useState("thisWeek");
     const [taskList, setTaskList] =  useState([]);
     const [updatedStatus, setUpdatedStatus] =  useState("");
     const [taskIdForCreateTask, setTaskIdForCreateTask]= useState("");
+    const [statusToCloseChecklist, setStatusToCloseChecklist]= useState("");
+    // const [showSortingMenu, setShowSortingMenu]= useState(false);
+
 
 
     const handleShowSorting = (()=>{
@@ -54,7 +57,7 @@ export const Board = (()=>{
       const fetchTaskList = async () => {
         try {
         
-          const response = await fetch(`${getTaskListApi}/${localStorageUserDetails?.userDetails?._id}`, {
+          const response = await fetch(`${getTaskListApi}/${localStorageUserDetails?.userDetails?._id}/${sortedBy}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -79,15 +82,25 @@ export const Board = (()=>{
       setUpdatedStatus("");
 
    
-      },[updatedStatus]);
+      },[updatedStatus,sortedBy]);
    
    
     const handleOpenCreateTask2 = (taskId)=>{
       setTaskIdForCreateTask(taskId);
+
+      
       setCreateTaskOpen(!isCreateTaskOpen);
     
     }
 
+
+    const closeChecklist = (status)=>{
+
+      setStatusToCloseChecklist(status + Math.random());
+    }
+
+
+    
 
     return <>
         <div className="boardPage">
@@ -102,12 +115,20 @@ export const Board = (()=>{
                    
                     <div className="boardPageContentHeader2DropDown" 
                     onClick = {handleShowSorting}>
-                    {sortedBy}
+                    {sortedBy == "thisDay" ? "Today" : (sortedBy == "thisWeek" ? "This Week" : "This Month")}
                     { showSorting ? <KeyboardArrowUpIcon style = {{ color: "#7b7979" }}/> 
                     :
                     <KeyboardArrowDownIcon  style = {{ color: "#7b7979" }}/> }
 
                     </div>
+
+                    {showSorting && (
+            <div className="boardPageContentDropdownMenu">
+                <div onClick = {()=>setSortedBy("thisDay")} className = {`boardPageContentDropdownMenuDay ${sortedBy == "thisDay" ? "active" : ""} `}>Today</div>
+                <div onClick = {()=>setSortedBy("thisWeek")} className = {`boardPageContentDropdownMenuWeek ${sortedBy == "thisWeek" ? "active" : ""} `}>This Week</div>
+                <div onClick = {()=>setSortedBy("thisMonth")} className = {`boardPageContentDropdownMenuMonth ${sortedBy == "thisMonth" ? "active" : ""} `}>This Month</div>
+            </div>
+                 )}
                   
                 </div>
                 
@@ -118,7 +139,7 @@ export const Board = (()=>{
                     <div className="boardPageContentMainBacklog">
                         <div className="boardPageContentMainBacklogHeader">
                             <p id = "boardPageContentMainBacklogHeaderTitle">Backlog</p>
-                            <ContentCopyIcon/>
+                            <ContentCopyIcon onClick = {() => closeChecklist("backlog")} />
                         </div>
 
                         <div className="boardPageContentMainBacklogCardList">
@@ -138,6 +159,7 @@ export const Board = (()=>{
                                           status = {item?.status}
                                           getNewStatus= { getNewStatus }
                                           getOpenCreateTask={handleOpenCreateTask2}
+                                          statusToCloseChecklist = {statusToCloseChecklist}
                                   /> 
                                   {/* {console.log("boardgetNewStaus", getNewStatus)} */}
                               </div>
@@ -156,7 +178,7 @@ export const Board = (()=>{
                             <div className="boardPageContentMainTodoHeaderRight">
                             {/* <p id = "boardPageContentMainTodoHeaderAddButton"></p> */}
                             <AddIcon onClick = {handleOpenCreateTask}/>
-                            <ContentCopyIcon/>
+                            <ContentCopyIcon onClick = {() => closeChecklist("todo")}/>
                             </div>
                         </div>
                         {isCreateTaskOpen && (<CreateTask taskId = {taskIdForCreateTask} getNewStatus={getNewStatus}/>)}
@@ -178,6 +200,7 @@ export const Board = (()=>{
                                           status = {item?.status}
                                           getNewStatus={getNewStatus}
                                           getOpenCreateTask={handleOpenCreateTask2}
+                                          statusToCloseChecklist = {statusToCloseChecklist}
 
                                   /> 
                               </div>
@@ -191,7 +214,7 @@ export const Board = (()=>{
         <div className="boardPageContentMainInProgress">
                         <div className="boardPageContentMainInProgressHeader">
                             <p id = "boardPageContentMainInProgressHeaderTitle">In progress</p>
-                            <ContentCopyIcon/>
+                            <ContentCopyIcon onClick = {() => closeChecklist("inProgress")}/>
                         </div>
 
                         <div className="boardPageContentMainInProgressCardList">
@@ -210,6 +233,7 @@ export const Board = (()=>{
                                           status = {item?.status}
                                           getNewStatus={getNewStatus}
                                           getOpenCreateTask={handleOpenCreateTask2}
+                                          statusToCloseChecklist = {statusToCloseChecklist}
 
                                   /> 
                               </div>
@@ -226,7 +250,7 @@ export const Board = (()=>{
         <div className="boardPageContentMainDone">
                         <div className="boardPageContentMainDoneHeader">
                             <p id = "boardPageContentMainDoneHeaderTitle">Done</p>
-                            <ContentCopyIcon/>
+                            <ContentCopyIcon onClick = {() => closeChecklist("done")}/>
                         </div>
 
                         <div className="boardPageContentMainDoneCardList">
@@ -246,6 +270,7 @@ export const Board = (()=>{
                                           status = {item?.status}
                                           getNewStatus={getNewStatus}
                                           getOpenCreateTask={handleOpenCreateTask2}
+                                          statusToCloseChecklist = {statusToCloseChecklist}
 
                                   /> 
                               </div>

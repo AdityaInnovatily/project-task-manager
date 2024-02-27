@@ -28,13 +28,14 @@
     align-items: center;
     margin:10px;
     /* border:solid green; */
+    position: relative;
 }
 
 .boardPageContentHeader2DropDown{
 width: 120px;
 height: 30px;
 padding: 0px, 3.67px, 0px, 3.67px;
-border:solid green;
+/* border:solid green; */
 display: flex;
 justify-content: center;
 align-items: center;
@@ -42,6 +43,45 @@ align-items: center;
 background: #EEECEC;
 font-size: 15px;
 
+}
+
+
+.boardPageContentDropdownMenu{
+    position: absolute;
+    top:40px;
+    right:20px;
+    width: 100px;
+    height: 80px;
+    border-radius: 12px;
+    font-size: 15px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+    flex-direction: column;
+    box-shadow: 0px 0px 4px 4px #4D40551A;
+    padding: 10px 15px;
+    /* border: solid red; */
+    z-index: 1;
+    
+}
+
+.boardPageContentDropdownMenuDay,
+.boardPageContentDropdownMenuWeek,
+.boardPageContentDropdownMenuMonth{
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+
+.boardPageContentDropdownMenuDay.active,
+.boardPageContentDropdownMenuWeek.active,
+.boardPageContentDropdownMenuMonth.active {
+  color: red;
 }
 
 

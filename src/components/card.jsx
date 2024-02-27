@@ -6,10 +6,10 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CircleIcon from '@mui/icons-material/Circle';
 import { updateTaskStatus, deleteTaskApi } from "../APIRoutes";
 
-export const Card = (({id, title, priority, dueDate, checklist, status, getNewStatus, getOpenCreateTask })=>{
+export const Card = (({id, title, priority, dueDate, checklist, status, getNewStatus, getOpenCreateTask, statusToCloseChecklist })=>{
 
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
-  
+
 
     const [showMenu, setShowMenu] =  useState(false);
     const [todos, setTodos] = useState(checklist || []);
@@ -17,6 +17,14 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
     const [dueDateDisability, setDueDateDisability] = useState({});
     const [formattedDueDate, setFormattedDueDate] = useState("");
 
+    useEffect(()=>{
+
+        if(statusToCloseChecklist.includes(status)){
+
+            setShowTodos(false);
+            
+        }   
+    },[statusToCloseChecklist]);
 
 
     const handleShowMenu = (()=>{
@@ -31,9 +39,9 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         checklist = {updatedTodos};
       };
 
-    const handleShowTodos = ()=>{
-        
-        setShowTodos(!showTodos);
+
+    const handleShowTodos = ()=>{       
+            setShowTodos(!showTodos);
     }
 
     const formattedDate = (dueDate)=>{
@@ -43,13 +51,9 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
                                 day: '2-digit',
                                 year: 'numeric',
                                 });
-                        // console.log("fomate",formattedDate);
+                        
                                 return formattedDate;
 
-        // const milliseconds = new Date(formattedDate).getTime();
-
-        //     return milliseconds;
-                            
     }
 
     const checkDueDateExpiry = ()=>{
@@ -62,11 +66,11 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
 
        
         if(dueDateMilliSeconds >= currentMilliSeconds){
-            console.log('live',formattedDate(dueDate), dueDateMilliSeconds, currentMilliSeconds);
+            // console.log('live',formattedDate(dueDate), dueDateMilliSeconds, currentMilliSeconds);
 
             return "live";
         }else{
-            console.log('expired',formattedDate(dueDate), dueDateMilliSeconds, currentMilliSeconds);
+            // console.log('expired',formattedDate(dueDate), dueDateMilliSeconds, currentMilliSeconds);
 
             return "expired";
         }

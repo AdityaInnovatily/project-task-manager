@@ -8,5 +8,7 @@ export const updateTask = `${host}/task/updateTask`;
 export const updateTaskStatus = `${host}/task/updateTaskStatus`;
 export const deleteTaskApi = `${host}/task/deleteTask`;
 export const updateUserApi = `${host}/user/updateUser`;
+export const analytics = `${host}/task/analytics`;
+
 
 
