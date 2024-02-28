@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./publicPage.css";
-import { getTaskByIdApi, updateChecklist } from "../APIRoutes";
+import { getTaskByIdPublicApi, updateChecklistPublic } from "../APIRoutes";
 import CircleIcon from '@mui/icons-material/Circle';
 import { useParams } from "react-router-dom";
 
@@ -23,7 +23,7 @@ export const PublicPage = (()=>{
         
           const getTaskDetails = async (id)=>{
         
-            const response = await fetch(`${getTaskByIdApi}/${id}`, {
+            const response = await fetch(`${getTaskByIdPublicApi}/${id}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export const PublicPage = (()=>{
         // checklist = {updatedTodos};
 
 
-        await fetch(updateChecklist, {
+        await fetch(updateChecklistPublic, {
             method: 'POST',
             headers: {
             //   Authorization: `Bearer ${localStorageUserDetails.token}`,
@@ -113,6 +113,14 @@ export const PublicPage = (()=>{
 
     return <>
     <div className="publicPage">
+   
+    <div className= "publicPageLogoHeader"> 
+    <img id = "logoImage" src={process.env.PUBLIC_URL + '/logo.png'} alt="Example" />
+        
+    Pro Manage
+    </div>
+  
+    
         <div className="publicPageContent">
             <div className="publicPageContentHeader">
                 <div className="publicPageContentHeaderPriorityText">

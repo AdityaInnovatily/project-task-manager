@@ -29,15 +29,34 @@
 
 
 .registerPageImage{
+  flex-direction: column;
     width: 50%;
     height: 100%;
-    /* border: solid red; */
+    background-color: #17A2B8; 
 }
 
 .registerPageImage img{
-    width: 100%; /* Set the width of the image to 100% of the container */
-    height: 100%; /* Set the height of the image to 100% of the container */
-    object-fit: fill;
+    width: 65%; 
+    height: 55%;
+    /* border:solid red; */
+    margin: -80px;
+    /* background-color: #17A2B8;  */
+    /* object-fit: fill; */
+}
+
+#registerPageImageLine1{
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+#registerPageImageLine2{
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-top: -10px;
+  color: #ffffff;
 }
 
 .registerPageForm {
@@ -140,6 +159,8 @@ input:focus{
 
   .registerPageFormContentButtons{
     flex-direction: column;
+    /* border:solid red; */
+    height:150px;
     /* row-gap: 10px; */    
   }
 
@@ -154,6 +175,7 @@ input:focus{
     border: none;
     font-size: 14px;
 
+
   }
 
   .registerPageFormContentLoginButton{
@@ -166,6 +188,16 @@ input:focus{
   #registerPageFormContentHaveNoAccountYet{
     color : #828282;
     /* border: solid green; */
+  }
+
+
+  .registerPageFormContentRegisterButton:hover,
+  .registerPageFormContentLoginButton:hover{
+    
+    width:105%;
+    height:45px;
+    box-shadow: 0px 2px 0px 3px #0909091a;
+    
   }
 
   

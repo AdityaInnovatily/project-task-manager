@@ -52,6 +52,12 @@
     color:black;
     font-weight: bold;
     font-size: 20px;
+    /* border:solid red; */
+}
+
+#sideBarLogo{
+    width:20%;
+    height:80%;
 }
 
 #logOutBtn{

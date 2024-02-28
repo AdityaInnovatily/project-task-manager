@@ -28,6 +28,7 @@ export const Analytics = (()=>{
             const response = await fetch(`${analytics}/${localStorageUserDetails?.userDetails?._id}`, {
               method: 'GET',
               headers: {
+                Authorization: `Bearer ${localStorageUserDetails?.token}`,
                 'Content-Type': 'application/json',
                 // Include any additional headers required for your GET request
               },

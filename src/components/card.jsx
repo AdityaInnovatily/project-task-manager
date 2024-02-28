@@ -52,7 +52,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         await fetch(updateChecklist, {
             method: 'POST',
             headers: {
-              Authorization: `Bearer ${localStorageUserDetails.token}`,
+               Authorization: `Bearer ${localStorageUserDetails?.token}`,
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(
@@ -113,7 +113,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         await fetch(updateTaskStatus, {
             method: 'POST',
             headers: {
-              Authorization: `Bearer ${localStorageUserDetails.token}`,
+                Authorization: `Bearer ${localStorageUserDetails?.token}`,
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(
@@ -139,7 +139,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         await fetch(`${deleteTaskApi}/${taskId}`, {
             method: 'DELETE',
             headers: {
-              Authorization: `Bearer ${localStorageUserDetails.token}`,
+               Authorization: `Bearer ${localStorageUserDetails?.token}`,
               'Content-Type': 'application/json',
             }
            

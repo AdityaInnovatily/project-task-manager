@@ -33,7 +33,10 @@ export default function SideBar(){
     <div className = "navbarPage">
 
     <div className="navbarHeader">
-    <div id= "navbarHeader"> <ViewInArOutlinedIcon/>Pro Manage</div>
+    <div id= "navbarHeader"> 
+    <img id = "sideBarLogo" src={process.env.PUBLIC_URL + '/logo.png'} alt="Example" />
+        
+    Pro Manage</div>
     </div>
 
 <div className="navbarSidebar">

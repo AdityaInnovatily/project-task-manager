@@ -47,6 +47,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
     const response = await fetch(`${getTaskByIdApi}/${id}`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${localStorageUserDetails?.token}`,
         'Content-Type': 'application/json',
         // Include any additional headers required for your GET request
       },
@@ -129,7 +130,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
        response  = await fetch(updateTask, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${localStorageUserDetails.token}`,
+          Authorization: `Bearer ${localStorageUserDetails?.token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(
@@ -148,7 +149,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
          response  = await fetch(createTaskApi, {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${localStorageUserDetails.token}`,
+            Authorization: `Bearer ${localStorageUserDetails?.token}`,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(

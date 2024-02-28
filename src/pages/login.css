@@ -26,16 +26,36 @@
 }
 
 
+
 .loginPageImage{
+  flex-direction: column;
     width: 50%;
     height: 100%;
-    /* border: solid red; */
+    background-color: #17A2B8; 
 }
 
 .loginPageImage img{
-    width: 100%; /* Set the width of the image to 100% of the container */
-    height: 100%; /* Set the height of the image to 100% of the container */
-    object-fit: fill;
+    width: 65%; 
+    height: 55%;
+    /* border:solid red; */
+    margin: -80px;
+    /* background-color: #17A2B8;  */
+    /* object-fit: fill; */
+}
+
+#loginPageImageLine1{
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+#loginPageImageLine2{
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-top: -10px;
+  color: #ffffff;
 }
 
 .loginPageForm {
@@ -120,7 +140,7 @@ input:focus{
   .loginPageFormContentLoginButton,
   .loginPageFormContentRegisterButton{
     width:30vw;
-    height:30px;
+    height:40px;
     /* margin: 5px 0px; */
     background: #17A2B8;
     border-radius: 15px;
@@ -142,5 +162,13 @@ input:focus{
     /* border: solid green; */
   }
 
+  .loginPageFormContentRegisterButton:hover,
+  .loginPageFormContentLoginButton:hover{
+    
+    width:105%;
+    height:45px;
+    box-shadow: 0px 2px 0px 3px #0909091a;
+    
+  }
   
 

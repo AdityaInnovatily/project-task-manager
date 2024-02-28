@@ -74,7 +74,6 @@ export const Login = (()=>{
       const response  = await fetch(loginRoute, {
         method: 'POST',
         headers: {
-          // Authorization: `Bearer ${localStorageUserDetails.token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -128,8 +127,10 @@ export const Login = (()=>{
         <div className='loginPageContent'>
 
         <div className='loginPageImage'>
-        <img alt = "Image Place" src = "https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww"></img>
-        </div>
+        <img id = "loginPageImage" src={process.env.PUBLIC_URL + '/registerimage.png'} alt="Example" />
+         <p id = "loginPageImageLine1">Welcome aboard my friend</p>
+         <p id = "loginPageImageLine2">just a couple of clicks and we start</p>
+          </div>
 
         <div className='loginPageForm'>
 

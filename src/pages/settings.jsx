@@ -71,7 +71,7 @@ export const Settings = (()=>{
           const response  = await fetch(updateUserApi, {
             method: 'POST',
             headers: {
-              Authorization: `Bearer ${localStorageUserDetails.token}`,
+              Authorization: `Bearer ${localStorageUserDetails?.token}`,
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(
