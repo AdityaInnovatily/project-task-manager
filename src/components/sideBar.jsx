@@ -11,9 +11,21 @@ import { Logout } from "./logout";
 
 export default function SideBar(){
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+    
+  const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
+  
+
+  useEffect(() => {
+
+      if (!localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+        navigate("/login");
+      }
+    }, []);
+
 
     const [isLogoutComponentPopup, setLogoutComponentPopup] = useState(false);
+    const [seletedOption, setSelectedOption] = useState("");
 
     
     const handleLogoutButton = async () => {
@@ -40,14 +52,19 @@ export default function SideBar(){
     </div>
 
 <div className="navbarSidebar">
-  <div id = "board" onClick = {()=>{navigate("/")}}><SpaceDashboardOutlinedIcon/> Board</div>
-  <div id = "analytics" onClick = {()=>{navigate("/analytics")}}><StorageOutlinedIcon/> Analytics</div>
-  <div id = "settings" onClick = {()=>{navigate("/settings",{state:{
-              editQuizId:"",
-              editQuizName:"",
-              editQuizType:""
-              }
-            })}}> <SettingsOutlinedIcon/> Settings</div>
+  <div className = {`boardClass ${seletedOption === "board" ? "active" : ""}`} 
+  onClick = {()=>{
+    setSelectedOption("board");
+   
+    navigate("/");
+
+    }}><SpaceDashboardOutlinedIcon/> Board</div>
+  <div className = {`analyticsClass ${seletedOption === "analytics" ? "active" : ""}`} onClick = {()=>{
+       setSelectedOption("analytics");
+       navigate("/analytics")}}><StorageOutlinedIcon/> Analytics</div>
+  <div className = {`settingsClass ${seletedOption === "settings" ? "active" : ""}`} onClick = {()=>{
+       setSelectedOption("settings");
+       navigate("/settings")}}> <SettingsOutlinedIcon/> Settings</div>
 </div>
 
 

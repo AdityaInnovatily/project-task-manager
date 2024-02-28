@@ -21,16 +21,10 @@ export const Login = (()=>{
     autoClose: 1500,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: "light",
   };
 
-  useEffect(() => {
-    if (localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
-
-      navigate("/");
-    }
-  }, []);
-
+ 
   const handleChange = (event) => {
 
     setValues({ ...values, [event.target.name]: event.target.value });

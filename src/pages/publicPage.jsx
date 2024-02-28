@@ -5,6 +5,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { useParams } from "react-router-dom";
 
 
+
 export const PublicPage = (()=>{
 
     const { taskId } = useParams();
@@ -51,8 +52,6 @@ export const PublicPage = (()=>{
     const handleChecklistCount = ((checklist) => {
 
         let checkedCount = 0;
-
-        console.log("sadfs",checklist);
 
         if(checklist.length>0){
 

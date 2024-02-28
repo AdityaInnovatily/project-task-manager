@@ -24,16 +24,16 @@
 .navbarSidebar{
     height:70%;
     padding:40px 0;
-    /* border: solid red; */
+    /* border: solid green; */
     flex-direction: column;
     justify-content: start;
     row-gap: 25px;
 }
 
 #navbarHeader,
-#board,
-#analytics,
-#settings,
+.boardClass,
+.analyticsClass,
+.settingsClass,
 #logOutBtn{
     display: flex;
     justify-content: start;
@@ -44,7 +44,15 @@
     font-size: 18px;
     color: #707070;
     background-color: white;
+    /* padding-left: 20px; */
     /* border: solid green; */
+
+}
+
+.boardClass.active,
+.analyticsClass.active,
+.settingsClass.active{
+    background: #4391ED1A;
 
 }
 
@@ -57,7 +65,7 @@
 
 #sideBarLogo{
     width:20%;
-    height:80%;
+    height:90%;
 }
 
 #logOutBtn{

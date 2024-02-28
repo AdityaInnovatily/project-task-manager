@@ -8,18 +8,27 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createTaskApi, getTaskByIdApi, updateTask } from "../APIRoutes";
+import { useNavigate } from "react-router-dom";
 
 
 export const CreateTask = (({taskId, getNewStatus})=>{
  
+  const navigate = useNavigate();
   const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
   const toastOptions = {
     position: "bottom-right",
     autoClose: 1500,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: "light",
   };
+
+  useEffect(() => {
+
+    if (!localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+      navigate("/login");
+    }
+  }, []);
 
  
   const [createTask, setCreateTask] = useState({

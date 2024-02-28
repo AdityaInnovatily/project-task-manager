@@ -20,7 +20,7 @@ export const Register = (()=>{
     autoClose: 1500,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: "light",
   };
 
   const [values, setValues] = useState({

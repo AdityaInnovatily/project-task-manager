@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Login from './pages/login';
-import Trial from './pages/trial';
 import { Login } from './pages/login';
 import { Register } from './pages/register';
 import SideBar from './components/sideBar';
@@ -26,7 +25,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Board/>} />
         <Route path="/createTask" element={<CreateTask/>} />
-        <Route path="/card" element={<Card/>} />
         <Route path="/analytics" element= {<Analytics/>} />
         <Route path="/settings" element= {<Settings/>} />
         <Route path="/publicPage/:taskId" element= {<PublicPage/>} />

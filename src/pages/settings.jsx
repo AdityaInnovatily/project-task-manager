@@ -6,17 +6,28 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { updateUserApi } from '../APIRoutes';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 export const Settings = (()=>{
 
+  const navigate = useNavigate();
+    
   const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
   
+  useEffect(() => {
+
+      if (!localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+        navigate("/login");
+      }
+    }, []);
+
+
   const toastOptions = {
     position: "top-right",
     autoClose: 1500,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark"
+    theme: "light"
   };
 
     const [userDetails, setUserDetails] = useState({

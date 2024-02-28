@@ -10,6 +10,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useNavigate } from "react-router-dom";
 import { CreateTask } from '../components/createTask';
 import {getTaskListApi} from "../APIRoutes";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export const Board = (()=>{
@@ -18,6 +20,21 @@ export const Board = (()=>{
 
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
     
+    const toastOptions = {
+      position: "bottom-right",
+      autoClose: 1500,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+    };
+
+    useEffect(() => {
+
+      if (!localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+        navigate("/login");
+      }
+    }, []);
+
     const date = new Date();
     const formattedDate = new Intl.DateTimeFormat('en-GB', {
       day: 'numeric',
@@ -65,17 +82,21 @@ export const Board = (()=>{
               // Include any additional headers required for your GET request
             },
           });
-  
-          if (!response.ok) {
-            throw new Error('Failed to fetch task data');
-          }
-  
+
+
+          // const data = await response.json();
           const taskListData = await response.json();
-        
+
+          
+          if (taskListData?.msg) {
+            throw new Error(taskListData?.msg);
+          }
+
           setTaskList([...taskListData]);
 
         } catch (error) {
-          console.error('Error fetching quiz data:', error.message);
+          toast.error(error.message, toastOptions)
+          // console.error('Error fetching quiz data:', data.error);
         }
       };
   
@@ -286,5 +307,6 @@ export const Board = (()=>{
                 </div>
             </div>
         </div>
+        <ToastContainer/>
     </>
 })

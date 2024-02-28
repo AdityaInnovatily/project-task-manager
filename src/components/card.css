@@ -13,6 +13,10 @@
 
 }
 
+.cardPage:hover{
+    box-shadow: 0px 2px 0px 3px #0909091a;
+}
+
 .cardPageContent{
     width: 312px;
     min-height: 150px;
@@ -74,15 +78,29 @@
     
 }
 
-#cardPageContentMenuEdit,
-#cardPageContentMenuEdit,
-#cardPageContentMenuEdit{
+.cardPageContentMenuEdit,
+.cardPageContentMenuShare,
+.cardPageContentMenuDelete{
     font-family: Poppins;
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
     letter-spacing: 0em;
     text-align: left;    
+}
+
+.cardPageContentMenuEdit:hover,
+.cardPageContentMenuShare:hover,
+.cardPageContentMenuDelete:hover{
+   font-size: 16px;
+    cursor:pointer;
+}
+
+.cardPageContentMenuEdit.active,
+.cardPageContentMenuShare.active,
+.cardPageContentMenuDelete.active{
+
+    color: red;
 }
 
 .cardPageContentTitle{
@@ -187,6 +205,15 @@ line-height: 12px;
 letter-spacing: 0em;
 text-align: center;
 
+}
+
+
+#cardPageContentFooterStatusBacklog:hover,
+#cardPageContentFooterStatusTodo:hover,
+#cardPageContentFooterStatusProgress:hover,
+#cardPageContentFooterStatusDone:hover{
+    box-shadow: 0px 1px 0px 1px #17A2B8;
+    cursor:pointer;
 }
 
 .cardPageContentFooterExpiryDate{

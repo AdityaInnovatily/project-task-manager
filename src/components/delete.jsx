@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import "./delete.css";
+import { useNavigate } from "react-router-dom";
 
 export const Delete = (()=>{
+
+    const navigate = useNavigate();
+    const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
+    useEffect(() => {
+
+        if (!localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+          navigate("/login");
+        }
+      }, []);
     
     return(
         <>

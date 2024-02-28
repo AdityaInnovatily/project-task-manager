@@ -5,11 +5,22 @@ import SideBar from "../components/sideBar";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import CircleIcon from '@mui/icons-material/Circle';
 import { analytics } from "../APIRoutes";
+import { useNavigate } from "react-router-dom";
   
 export const Analytics = (()=>{
 
+  const navigate = useNavigate();
+    
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
-   
+    
+    useEffect(() => {
+
+        if (!localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+          navigate("/login");
+        }
+      }, []);
+
+ 
     const [analyticsDetails, setAnalyticsDetails] = useState({
         backlog :0,
         todo:0,

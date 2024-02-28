@@ -7,9 +7,11 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { updateTaskStatus, deleteTaskApi, updateChecklist } from "../APIRoutes";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 export const Card = (({id, title, priority, dueDate, checklist, status, getNewStatus, getOpenCreateTask, statusToCloseChecklist })=>{
-
+    console.log('kfdsf',checklist);
+    const navigate = useNavigate();
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
 
     const toastOptions = {
@@ -19,10 +21,18 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         draggable: true,
         theme: "light",
       };
+   
+      useEffect(() => {
+
+        if (!localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY)) {
+          navigate("/login");
+        }
+      }, []);
 
     const [showMenu, setShowMenu] =  useState(false);
     const [todos, setTodos] = useState(checklist || []);
     const [showTodos, setShowTodos] =  useState(false);
+    const [dropDownFeatures, setDropDownFeatures] =  useState("");
     const [dueDateDisability, setDueDateDisability] = useState({});
     const [formattedDueDate, setFormattedDueDate] = useState("");
 
@@ -165,6 +175,32 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
     }
 
 
+    const handleChecklistCount = ((checklist) => {
+        
+        // getNewStatus("checklist updated");
+
+    console.log("sakfjsa;f", checklist);
+
+        let checkedCount = 0;
+
+        if(checklist.length>0){
+
+         for(let item of checklist){
+
+            if(item.isChecked){
+                checkedCount++;
+            }
+         }
+
+        }
+
+        return checkedCount;
+
+    });
+
+    // handleChecklistCount(checklist);
+
+
     return (
         <>
             <div className="cardPage">
@@ -195,16 +231,24 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
                         <div className="cardPageContentHeaderDropDownButton" onClick={handleShowMenu}>...</div>
                         {showMenu && (
             <div className="cardPageContentMenu">
-                <div id = "cardPageContentMenuEdit" onClick={()=> openCreateTask(id)}>Edit</div>
-                <div id = "cardPageContentMenuShare" onClick = {()=>handleShareTask(id)}>Share</div>
-                <div id = "cardPageContentMenuDelete" onClick={()=> deleteTask(id)}>Delete</div>
+                <div className = {`cardPageContentMenuEdit ${dropDownFeatures === "edit" ? "active" : ""}`} onClick={()=> {
+                    setDropDownFeatures("edit");
+                    openCreateTask(id)}}>Edit</div>
+                <div className = {`cardPageContentMenuShare ${dropDownFeatures === "share" ? "active" : ""}`} onClick = {()=>{
+                       setDropDownFeatures("share");
+                    handleShareTask(id)}}>Share</div>
+                <div className = {`cardPageContentMenuDelete ${dropDownFeatures === "delete" ? "active" : ""}`} onClick={()=> {
+                       setDropDownFeatures("delete");
+                    deleteTask(id)}}>Delete</div>
             </div>
                  )}
                     </div>
-
+                            
                     <div className="cardPageContentTitle">{title}</div>
                     <div className="cardPageContentChecklist">
-                        <div className="cardPageContentChecklistText">Checklist (0/0)</div>
+                        <div className="cardPageContentChecklistText">
+                        Checklist ({handleChecklistCount(todos)}/{todos.length})
+                        </div>
                         <div className="cardPageContentChecklistDropDownButton" onClick = {handleShowTodos}>{ showTodos ? <KeyboardArrowUpIcon style = {{ color: "#7b7979" }}/> :<KeyboardArrowDownIcon  style = {{ color: "#7b7979" }}/> }</div>
                     </div>
                     
