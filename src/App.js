@@ -13,6 +13,7 @@ import { Logout } from './components/logout';
 import { CreateTask } from './components/createTask';
 import { Card } from './components/card';
 import { Board } from './pages/board';
+import { PublicPage } from './pages/publicPage';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/card" element={<Card/>} />
         <Route path="/analytics" element= {<Analytics/>} />
         <Route path="/settings" element= {<Settings/>} />
+        <Route path="/publicPage/:taskId" element= {<PublicPage/>} />
   
       </Routes>
     </BrowserRouter>

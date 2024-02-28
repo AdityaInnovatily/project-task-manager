@@ -4,12 +4,21 @@ import "./card.css";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CircleIcon from '@mui/icons-material/Circle';
-import { updateTaskStatus, deleteTaskApi } from "../APIRoutes";
+import { updateTaskStatus, deleteTaskApi, updateChecklist } from "../APIRoutes";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Card = (({id, title, priority, dueDate, checklist, status, getNewStatus, getOpenCreateTask, statusToCloseChecklist })=>{
 
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
 
+    const toastOptions = {
+        position: "top-right",
+        autoClose: 1500,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      };
 
     const [showMenu, setShowMenu] =  useState(false);
     const [todos, setTodos] = useState(checklist || []);
@@ -32,11 +41,30 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         setShowMenu(!showMenu);
     })
 
-    const handleCheckboxChange = (index) => {
+    const handleCheckboxChange = async (index) => {
         const updatedTodos = [...todos];
+        let payload = {...updatedTodos[index]};
         updatedTodos[index].isChecked = !updatedTodos[index].isChecked;
         setTodos(updatedTodos);
         checklist = {updatedTodos};
+
+
+        await fetch(updateChecklist, {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${localStorageUserDetails.token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(
+              {
+                checklistItemId: payload?._id,
+                taskId: id,
+                // "task" : "updated task",
+                isChecked: !payload?.isChecked
+            }
+            ),
+          });
+
       };
 
 
@@ -82,7 +110,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
     const handleChangeStatus = async(newStatus)=>{
         getNewStatus(newStatus);
 
-        const response  = await fetch(updateTaskStatus, {
+        await fetch(updateTaskStatus, {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${localStorageUserDetails.token}`,
@@ -108,7 +136,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
 
         getNewStatus("task deleted");
 
-        const response  = await fetch(`${deleteTaskApi}/${taskId}`, {
+        await fetch(`${deleteTaskApi}/${taskId}`, {
             method: 'DELETE',
             headers: {
               Authorization: `Bearer ${localStorageUserDetails.token}`,
@@ -118,6 +146,24 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
           });
     
     }
+
+    const handleShareTask = (taskId)=>{
+
+        const tempInput = document.createElement('input');
+        tempInput.value = `http://localhost:3000/publicPage/${taskId}`;
+    
+        // Append the input element to the document
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+    
+        // Copy the text to the clipboard
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+    
+        toast.success(`link copied to clipboard`, toastOptions);
+    }
+
 
     return (
         <>
@@ -150,7 +196,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
                         {showMenu && (
             <div className="cardPageContentMenu">
                 <div id = "cardPageContentMenuEdit" onClick={()=> openCreateTask(id)}>Edit</div>
-                <div id = "cardPageContentMenuShare">Share</div>
+                <div id = "cardPageContentMenuShare" onClick = {()=>handleShareTask(id)}>Share</div>
                 <div id = "cardPageContentMenuDelete" onClick={()=> deleteTask(id)}>Delete</div>
             </div>
                  )}
@@ -187,9 +233,9 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
                         <div className="cardPageContentFooterExpiryDate" 
                         style={
                             {
-                                backgroundColor: status == "done" ? "#63C05B" : (dueDate ? (checkDueDateExpiry() == "expired" ? "#FF0000"   : null ) 
+                                backgroundColor: status === "done" ? "#63C05B" : (dueDate ? (checkDueDateExpiry() === "expired" ? "#FF0000"   : null ) 
                                                 :  '#ffffff'),
-                                color: status == "done" ? "#ffffff" : null             
+                                color: status === "done" ? "#ffffff" : null             
                             }}>
                 
                         {dueDate ? formattedDate(dueDate) : ""}
@@ -197,25 +243,26 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
                         </div>
                         <div className="cardPageContentFooterStatusButton">
                             <button id="cardPageContentFooterStatusBacklog" 
-                            style={status == "backlog" ? {display: 'none'} : {}}
+                            style={status === "backlog" ? {display: 'none'} : {}}
                             value = "backlog"
                             onClick = {()=> handleChangeStatus("backlog")}>BACKLOG</button>
                             <button id="cardPageContentFooterStatusTodo" 
-                             style={status == "todo" ? {display: 'none'} : {}}
+                             style={status === "todo" ? {display: 'none'} : {}}
                              value = "todo"
                             onClick = {()=> handleChangeStatus("todo")}>ToDo</button>
                             <button id="cardPageContentFooterStatusProgress" 
-                             style={status == "inProgress" ? {display: 'none'} : {}}
+                             style={status === "inProgress" ? {display: 'none'} : {}}
                              value = "inProgress"
                             onClick = {()=> handleChangeStatus("inProgress")}>PROGRESS</button>
                             <button id="cardPageContentFooterStatusDone" 
-                             style={status == "done" ? {display: 'none'} : {}}
+                             style={status === "done" ? {display: 'none'} : {}}
                              value = "done"
                             onClick = {()=> handleChangeStatus("done")}>DONE</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </>
     )
 })

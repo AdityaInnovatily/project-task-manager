@@ -98,7 +98,7 @@ export const Login = (()=>{
           JSON.stringify(data)
         );
 
-        toast.error("Welcome To Task Manager", toastOptions);
+        toast.success("Welcome To Task Manager", toastOptions);
 
         setTimeout(()=>{
 

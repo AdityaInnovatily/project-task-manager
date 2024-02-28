@@ -109,9 +109,9 @@ export const Settings = (()=>{
             // setNewPasswordError("Password Updated Successfully");
             
             if(userDetails?.newPassword){
-            toast.error("Password Updated Successfully", toastOptions);
+            toast.success("Password Updated Successfully", toastOptions);
             }else{
-              toast.error("Name Updated Successfully", toastOptions);
+              toast.success("Name Updated Successfully", toastOptions);
             }
           }
 

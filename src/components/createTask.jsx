@@ -173,9 +173,9 @@ export const CreateTask = (({taskId, getNewStatus})=>{
             getNewStatus("render the board page");
 
             if(taskId){
-              toast.error("task updated successfully", toastOptions);
+              toast.success("task updated successfully", toastOptions);
             }else{
-              toast.error("task created successfully", toastOptions);
+              toast.success("task created successfully", toastOptions);
             }
             setDivStyle({ display: 'none' });
 

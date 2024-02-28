@@ -1,0 +1,156 @@
+.publicPage{
+    width: 100vw;
+    height: 100vh;
+    height: auto;
+    border-radius: 20px;
+    /* border: 1px solid #828282; */
+    padding-top:200px;
+    background-color: #ffffff;
+    display:flex;
+    justify-content: center;
+
+}
+
+.publicPageContent{
+    width: 40%;
+    min-width:250px;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+    /* border: solid red; */
+    box-shadow: 0px 0px 4px 4px #4D40551A;
+    border-radius: 10px;
+    padding:15px;
+}
+
+
+.publicPageContentHeader,
+.publicPageContentTitle,
+.publicPageContentChecklist,
+.publicPageContentFooter,
+.publicPageContentFooterExpiryDate{
+    width:95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border:solid green; */
+}
+
+.publicPageContentHeader{
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+}
+
+.publicPageContentTitle{
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 10px;
+    
+}
+
+.publicPageContentChecklist{
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+
+.publicPageContentChecklistItems{
+ /* border: solid yellowgreen; */
+ width: 100%;
+ /* height:150px; */
+ max-height: 200px;
+ margin-top: -5px;
+ /* padding:10px 0px; */
+ display: flex;
+ justify-content: start;
+ align-items: center;
+ flex-direction: column;
+ row-gap: 10px;
+ overflow-y: auto;
+}
+
+#publicPageContentCheckListItem{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 8px;
+    width:95%;
+    height: 30px;
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    /* border:solid red; */
+}
+
+.publicPageContentCheckListItemCheckBox{
+    width:20px;
+    height: 30px;
+    /* border: solid yellow; */
+
+}
+
+.publicPageContentCheckListItemTextArea{
+    border:none;
+    width: 80%;
+    height:25px;
+    text-align: left;
+    /* border: solid green; */
+    
+}
+
+
+
+.publicPageContentFooterExpiryDate,
+#publicPageContentFooterStatusBacklog,
+#publicPageContentFooterStatusTodo,
+#publicPageContentFooterStatusProgress,
+#publicPageContentFooterStatusDone{
+width: 58px;
+height: 22px;
+padding: 5px, 10px, 5px, 10px;
+border-radius: 8px;
+gap: 10px;
+background: #EEECEC;
+border: none;
+margin: 0 4px;
+/* border:solid yellow; */
+
+font-family: Poppins;
+font-size: 8px;
+font-weight: 500;
+line-height: 12px;
+letter-spacing: 0em;
+text-align: center;
+
+}
+
+.publicPageContentFooterExpiryDate{
+    justify-content: center;
+    /* background-color:red;
+     */
+    background-color: #FF0000;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+.publicPageContentFooter{
+    justify-content: start;
+}

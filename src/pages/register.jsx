@@ -125,7 +125,7 @@ export const Register = (()=>{
           //   JSON.stringify(data)
           // );
 
-          toast.error("successfully registered", toastOptions);
+          toast.success("successfully registered", toastOptions);
 
           setTimeout(()=>{
 
