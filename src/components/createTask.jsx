@@ -16,12 +16,13 @@ export const CreateTask = (({taskId, getNewStatus})=>{
   const navigate = useNavigate();
   const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
   const toastOptions = {
-    position: "bottom-right",
-    autoClose: 1500,
+    position: "top-right",
+    autoClose: 1000,
     pauseOnHover: true,
     draggable: true,
     theme: "light",
   };
+
 
   useEffect(() => {
 
@@ -127,6 +128,35 @@ export const CreateTask = (({taskId, getNewStatus})=>{
     setCreateTask({...createTask, checklist :[...updatedTodos]});
   };
 
+  const handleValidation = () => {
+
+    const { title, priority, checklist } = createTask;
+
+    console.log("zzzsafs",createTask);
+
+    if (!title) {
+      toast.warn("Please, fill title",toastOptions);
+    
+      return false;
+    }
+
+     if (!priority) {
+      toast.warn("Please, select task priority",toastOptions);
+    
+      return false;
+    }
+
+     if (checklist.length === 0) {
+      toast.warn("Please add minimum 1 task",toastOptions);
+      
+
+      return false;
+    } 
+    
+    return true;
+
+  };
+
   const handleSaveButton = async (event)=>{
     event.preventDefault();
 
@@ -134,6 +164,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
 
     let response;
 
+    if(handleValidation()){
     if(taskId){
 
        response  = await fetch(updateTask, {
@@ -175,23 +206,31 @@ export const CreateTask = (({taskId, getNewStatus})=>{
       }
   
           let data = await response.json();
+
     
-          if(data.msg){
+          if(data?.msg){
               toast.error(data.msg,toastOptions);
           }else{
-
-            getNewStatus("render the board page");
-
+          
             if(taskId){
+              // continue;
               toast.success("task updated successfully", toastOptions);
+            
             }else{
               toast.success("task created successfully", toastOptions);
             }
-            setDivStyle({ display: 'none' });
 
+            setTimeout(()=>{
+              getNewStatus("render the board page");
+            },1200);
             
-            
+            setDivStyle({ display: 'none' });
+           
+
           }
+         
+
+        }
             
   }
 
@@ -212,7 +251,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
      <div className="createTaskPage" style = {divStyle}>
 
         <div className="createTaskPageContent">
-        
+       
         <div className="createTaskPageContentHeader">Title<span>*</span></div>
 
         <div className="createTaskPageContentTitleInput">
@@ -254,7 +293,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
         </div>
 
         </div>
-
+        
         <div className="createTaskPageContentCheckList">
         <div className="createTaskPageContentCheckListText">Checklist (0/0)<span>*</span></div>
 
@@ -320,7 +359,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
 
         </div>
     </div>
-        <ToastContainer/>
+    <ToastContainer/>
     </>
     )
 })

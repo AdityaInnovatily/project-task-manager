@@ -124,7 +124,7 @@ export const PublicPage = (()=>{
             <div className="publicPageContentHeader">
                 <div className="publicPageContentHeaderPriorityText">
                 {taskDetails?.priority === "highPriority" ? 
-                <div>
+                <div className="publicPageContentHeaderPriorityText2">
                 <CircleIcon style = {{ color:"#FF2473",fontSize: 12, marginRight:"7px"}}/>
                 HIGH PRIORITY
                 </div>

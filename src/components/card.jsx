@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
 export const Card = (({id, title, priority, dueDate, checklist, status, getNewStatus, getOpenCreateTask, statusToCloseChecklist })=>{
-    console.log('kfdsf',checklist);
+    // console.log('kfdsf',checklist);
     const navigate = useNavigate();
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
 
@@ -137,7 +137,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
             // let data = await response.json()
     }
 
-    const openCreateTask = async(taskId)=>{
+    const openCreateTask = (taskId)=>{
         
         getOpenCreateTask(taskId);
     }
@@ -179,7 +179,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         
         // getNewStatus("checklist updated");
 
-    console.log("sakfjsa;f", checklist);
+    // console.log("sakfjsa;f", checklist);
 
         let checkedCount = 0;
 
@@ -279,7 +279,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
                             {
                                 backgroundColor: status === "done" ? "#63C05B" : (dueDate ? (checkDueDateExpiry() === "expired" ? "#FF0000"   : null ) 
                                                 :  '#ffffff'),
-                                color: status === "done" ? "#ffffff" : null             
+                                color: checkDueDateExpiry() === "live" && status !== "done" ? "#000000" : "#ffffff"          
                             }}>
                 
                         {dueDate ? formattedDate(dueDate) : ""}

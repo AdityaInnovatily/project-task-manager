@@ -16,7 +16,7 @@ export const Register = (()=>{
  
   const navigate = useNavigate();
   const toastOptions = {
-    position: "bottom-right",
+    position: "top-right",
     autoClose: 1500,
     pauseOnHover: true,
     draggable: true,

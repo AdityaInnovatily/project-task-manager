@@ -102,15 +102,31 @@ font-size: 15px;
     column-gap: 15px;
 }
 
+::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+
+  }
+
+::-webkit-scrollbar-track {
+    background: #D6EAF4; /* Set the background color of the scrollbar track */
+  }
+  
+::-webkit-scrollbar-thumb {
+    background: #8DAAB9CC; /* Set the color of the scrollbar thumb */
+  }
+  
+
 .boardPageContentMainBacklog,
 .boardPageContentMainTodo,
 .boardPageContentMainInProgress,
 .boardPageContentMainDone
 {
-    width:380px;
+    width:400px;
     height:98%;
     border-radius: 12px;
-    background-color: #E0E0E0;
+    background-color: #EEF2F5;
+    /* background: #EEF2F5; */
+
     /* border:solid green; */
 }
 

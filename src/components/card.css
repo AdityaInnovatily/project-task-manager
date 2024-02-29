@@ -2,14 +2,17 @@
     /* position: absolute;
     top:40%;
     left:40%; */
-    width: 312px;
+    width: 350px;
     min-height: 150px;
     height: auto;
     border-radius: 20px;
     /* border: 1px solid #828282; */
-    padding:5px;
+    padding:15px 5px;
     background-color: #ffffff;
     /* font-size: 15px; */
+    display:flex;
+    justify-content: center;
+    /* padding:10px; */
 
 }
 
@@ -18,7 +21,7 @@
 }
 
 .cardPageContent{
-    width: 312px;
+    width: 98%;
     min-height: 150px;
     display: flex;
     justify-content: center;
@@ -44,7 +47,7 @@
 
 .cardPageContentHeader{
     font-family: Poppins;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 500;
     line-height: 12px;
     letter-spacing: 0em;
@@ -54,7 +57,7 @@
 
 .cardPageContentHeaderDropDownButton{
     /* position: relative; */
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bolder;
     letter-spacing: 2px;
 
@@ -67,7 +70,7 @@
     width: 100px;
     height: 80px;
     border-radius: 12px;
-    font-size: 15px;
+    font-size: 18px;
     background-color: #ffffff;
     display: flex;
     justify-content: space-around;
@@ -82,7 +85,7 @@
 .cardPageContentMenuShare,
 .cardPageContentMenuDelete{
     font-family: Poppins;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 21px;
     letter-spacing: 0em;
@@ -92,7 +95,7 @@
 .cardPageContentMenuEdit:hover,
 .cardPageContentMenuShare:hover,
 .cardPageContentMenuDelete:hover{
-   font-size: 16px;
+   font-size: 18px;
     cursor:pointer;
 }
 
@@ -105,7 +108,7 @@
 
 .cardPageContentTitle{
     font-family: Poppins;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 27px;
     letter-spacing: 0em;
@@ -115,11 +118,12 @@
 
 .cardPageContentChecklist{
     font-family: Inter;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 17px;
     letter-spacing: 0em;
     text-align: left;
+    margin-bottom: 10px;
 
 }
 
@@ -162,7 +166,7 @@ background: #EEECEC;
     height: 30px;
     border: 1px solid #E2E2E2;
     border-radius: 10px;
-    /* border:solid red; */
+    /* border:solid red;    */
 }
 
 .cardPageContentCheckListItemCheckBox{
@@ -175,8 +179,9 @@ background: #EEECEC;
 .cardPageContentCheckListItemTextArea{
     border:none;
     width: 80%;
-    height:25px;
+    height:15px;
     text-align: left;
+    /* margin: auto 0px; */
     /* border: solid green; */
     
 }
@@ -188,8 +193,8 @@ background: #EEECEC;
 #cardPageContentFooterStatusTodo,
 #cardPageContentFooterStatusProgress,
 #cardPageContentFooterStatusDone{
-width: 58px;
-height: 22px;
+width: 62px;
+height: 24px;
 padding: 5px, 10px, 5px, 10px;
 border-radius: 8px;
 gap: 10px;
@@ -199,7 +204,7 @@ margin: 0 4px;
 /* border:solid yellow; */
 
 font-family: Poppins;
-font-size: 8px;
+font-size: 10px;
 font-weight: 500;
 line-height: 12px;
 letter-spacing: 0em;

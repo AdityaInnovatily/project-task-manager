@@ -21,7 +21,7 @@ export const Board = (()=>{
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
     
     const toastOptions = {
-      position: "bottom-right",
+      position: "top-right",
       autoClose: 1500,
       pauseOnHover: true,
       draggable: true,
@@ -58,6 +58,7 @@ export const Board = (()=>{
     });
 
     const handleOpenCreateTask = (()=>{
+      // toast.error("toastMessage",toastOptions);
         setCreateTaskOpen(!isCreateTaskOpen);
     });
 
@@ -67,6 +68,17 @@ export const Board = (()=>{
          setUpdatedStatus(value);
       
     }
+
+//     const toastStart =  (toastType, toastMessage)=>{
+    
+//       console.log('ksafsafj;sf',toastType, toastMessage);
+
+//       toast.error(toastMessage,toastOptions);
+//       // setUpdatedStatus(value);
+   
+//  }
+
+
   
 
     useEffect(() => {
@@ -183,6 +195,7 @@ export const Board = (()=>{
                                           getOpenCreateTask={handleOpenCreateTask2}
                                           statusToCloseChecklist = {statusToCloseChecklist}
                                   /> 
+                                  
                                   {/* {console.log("boardgetNewStaus", getNewStatus)} */}
                               </div>
                           
@@ -203,7 +216,7 @@ export const Board = (()=>{
                             <ContentCopyIcon onClick = {() => closeChecklist("todo")}/>
                             </div>
                         </div>
-                        {isCreateTaskOpen && (<CreateTask taskId = {taskIdForCreateTask} getNewStatus={getNewStatus}/>)}
+                        {isCreateTaskOpen && (<CreateTask taskId = {taskIdForCreateTask} getNewStatus={getNewStatus} />)}
 
                         <div className="boardPageContentMainTodoCardList">
 
