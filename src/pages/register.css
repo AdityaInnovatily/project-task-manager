@@ -118,7 +118,7 @@ input:focus{
 #registerPageFormContentName::placeholder {
   font-family: 'Font Awesome 5 Free';
   content: '\f007'; /* Use the Unicode value of the Font Awesome icon */
-  /* font-weight: 900; */
+  font-weight: 900;
   color:#828282;
   
 }
@@ -126,7 +126,7 @@ input:focus{
 #registerPageFormContentEmail::placeholder {
     font-family: 'Font Awesome 5 Free';
     content: '\f0e0'; /* Use the Unicode value of the Font Awesome icon */
-    /* font-weight: 900; */
+    font-weight: 900;
     color:#828282;
   }
 
