@@ -16,7 +16,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
 
     const toastOptions = {
         position: "top-right",
-        autoClose: 1500,
+        autoClose: 1000,
         pauseOnHover: true,
         draggable: true,
         theme: "light",

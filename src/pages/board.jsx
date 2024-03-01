@@ -22,7 +22,7 @@ export const Board = (()=>{
     
     const toastOptions = {
       position: "top-right",
-      autoClose: 1500,
+      autoClose: 1000,
       pauseOnHover: true,
       draggable: true,
       theme: "light",

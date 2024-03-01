@@ -18,7 +18,7 @@ export const Login = (()=>{
   
   const toastOptions = {
     position: "top-right",
-    autoClose: 1500,
+    autoClose: 1000,
     pauseOnHover: true,
     draggable: true,
     theme: "light",
@@ -33,17 +33,17 @@ export const Login = (()=>{
 
   const validateForm = () => {
     const { email, password } = values;
-    if (email === "") {
-
+    if (email == "") {
       setEmailError("Email is required");
-      // toast.error("Email is required.", toastOptions);
       return false;
-
-    } else{
-
-        setEmailError("");
-
-    } 
+    }
+    else if(!email.includes("@") || !email.includes(".com")){
+      setEmailError("Email is not correct");
+      return false;
+    }
+    else{
+      setEmailError("");
+    }
     
     if (password === "") {
 

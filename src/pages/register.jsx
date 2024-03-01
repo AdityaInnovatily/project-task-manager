@@ -17,7 +17,7 @@ export const Register = (()=>{
   const navigate = useNavigate();
   const toastOptions = {
     position: "top-right",
-    autoClose: 1500,
+    autoClose: 1000,
     pauseOnHover: true,
     draggable: true,
     theme: "light",
@@ -55,15 +55,7 @@ export const Register = (()=>{
     const { password, confirmPassword, name, email } = values;
 
     // console.log("pas",name,email,password,confirmPassword);
-    if (password !== confirmPassword) {
-      setPasswordError("Password and Confirm password must be same");
-      setConfirmPasswordError("Password and Confirm password must be same");
-
-      return false;
-    }else{
-      setPasswordError("");
-      setConfirmPasswordError("");
-    }
+  
 
      if (name.length < 3) {
       setNameError("username should be greater than 3 characters.");
@@ -71,6 +63,18 @@ export const Register = (()=>{
     } 
     else{
       setNameError("");
+    }
+
+    if (email == "") {
+      setEmailError("Email is required");
+      return false;
+    }
+    else if(!email.includes("@") || !email.includes(".com")){
+      setEmailError("Email is not correct");
+      return false;
+    }
+    else{
+      setEmailError("");
     }
 
      if (password.length < 8) {
@@ -82,14 +86,16 @@ export const Register = (()=>{
       setPasswordError("");
     }
 
-     if (email == "") {
+    if (password !== confirmPassword) {
+      setPasswordError("Password and Confirm password must be same");
+      setConfirmPasswordError("Password and Confirm password must be same");
 
-      setEmailError("Email is required");
       return false;
+    }else{
+      setPasswordError("");
+      setConfirmPasswordError("");
     }
-    else{
-      setEmailError("");
-    }
+    
 
     return true;
 
