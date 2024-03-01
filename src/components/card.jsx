@@ -185,7 +185,7 @@ const formattedDate2 = `${month} ${day}${suffix}`;
     const handleShareTask = (taskId)=>{
 
         const tempInput = document.createElement('input');
-        tempInput.value = `http://localhost:3000/publicPage/${taskId}`;
+        tempInput.value = `https://project-task-manager-frontend.vercel.app/publicPage/${taskId}`;
     
         // Append the input element to the document
         document.body.appendChild(tempInput);
