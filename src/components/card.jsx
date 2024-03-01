@@ -200,7 +200,7 @@ const formattedDate2 = `${month} ${day}${suffix}`;
     }
 
 
-    const handleChecklistCount = ((checklist) => {
+    const handleChecklistCount = ((items) => {
         
         // getNewStatus("checklist updated");
 
@@ -208,9 +208,9 @@ const formattedDate2 = `${month} ${day}${suffix}`;
 
         let checkedCount = 0;
 
-        if(checklist.length>0){
+        if(items.length>0){
 
-         for(let item of checklist){
+         for(let item of items){
 
             if(item.isChecked){
                 checkedCount++;
@@ -272,7 +272,7 @@ const formattedDate2 = `${month} ${day}${suffix}`;
                     <div className="cardPageContentTitle">{title}</div>
                     <div className="cardPageContentChecklist">
                         <div className="cardPageContentChecklistText">
-                        Checklist ({handleChecklistCount(todos)}/{todos.length})
+                        Checklist ({handleChecklistCount(checklist)}/{checklist.length})
                         </div>
                         <div className="cardPageContentChecklistDropDownButton" onClick = {handleShowTodos}>{ showTodos ? <KeyboardArrowUpIcon style = {{ color: "#7b7979" }}/> :<KeyboardArrowDownIcon  style = {{ color: "#7b7979" }}/> }</div>
                     </div>
@@ -280,7 +280,7 @@ const formattedDate2 = `${month} ${day}${suffix}`;
                     {showTodos && (
                         <div className="cardPageContentChecklistItems">
                         {console.log('tododd',todos)}
-                        {todos.map((todo, index) => (
+                        {checklist.map((todo, index) => (
                       
                         <div id = "cardPageContentCheckListItem"  key={index}>
                             <input
