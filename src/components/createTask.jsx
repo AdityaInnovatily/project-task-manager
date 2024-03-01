@@ -134,6 +134,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
 
     console.log("zzzsafs",createTask);
 
+   
     if (!title) {
       toast.warn("Please, fill title",toastOptions);
     
@@ -148,10 +149,18 @@ export const CreateTask = (({taskId, getNewStatus})=>{
 
      if (checklist.length === 0) {
       toast.warn("Please add minimum 1 task",toastOptions);
-      
-
+    
       return false;
-    } 
+    }
+    else{
+      for(let [index,checklistitem] of checklist.entries()){
+        if(checklistitem?.task.trim() == ""){
+          toast.warn(`Please, fill checklist item ${index+1}`,toastOptions);
+          return false;
+        }
+      }
+  
+    }
     
     return true;
 

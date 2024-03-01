@@ -34,6 +34,17 @@
 .boardPageContentHeader1,
 .boardPageContentHeader2{
     margin-right: 30px;
+    /* width:88vw; */
+}
+
+.boardPageContentHeader1UserNamex,
+.boardPageContentHeader2Title{
+    text-align: start;
+    font-weight: bold;
+    /* border: solid blue; */
+    margin-top: 25px;
+    font-family: "openSans";
+    font-size: 20px;
 }
 
 .boardPageContentHeader2DropDown{
@@ -45,7 +56,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 /* border: 1.1px solid #767575; */
-background: #EEECEC;
+/* background: #EEECEC; */
 font-size: 15px;
 
 }
@@ -93,14 +104,26 @@ font-size: 15px;
 .boardPageContentMain{
     /* border:solid blue; */
     width:85vw;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     height:90%;
-    margin:10px;
-    display: flex;
+    /* margin:10px; */
+    /* display: flex; */
     /* justify-content: center; */
+    /* align-items: center; */
+    /* column-gap: 15px; */
+    overflow-x:scroll;
+}
+
+.boardPageContentMainSlider{
+    /* border:solid yellowgreen; */
+    width:1670px;
+    height:100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
     column-gap: 15px;
 }
+
 
 ::-webkit-scrollbar {
     width: 10px; /* Set the width of the scrollbar */
@@ -126,7 +149,6 @@ font-size: 15px;
     border-radius: 12px;
     background-color: #EEF2F5;
     /* background: #EEF2F5; */
-
     /* border:solid green; */
 }
 

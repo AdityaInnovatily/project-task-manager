@@ -11,7 +11,12 @@
     display: flex;
     justify-content: start;
     padding-left: 20px;
+    text-align: start;
     font-weight: bold;
+    /* border: solid blue; */
+    margin-top: 25px;
+    font-family: "openSans";
+    font-size: 20px;
 }
 
 .analyticsPageContentLeftRight{

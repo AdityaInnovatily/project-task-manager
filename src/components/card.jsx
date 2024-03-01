@@ -94,6 +94,31 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
 
     }
 
+    function getOrdinalSuffix(day) {
+        if (day >= 11 && day <= 13) {
+          return 'th';
+        }
+        switch (day % 10) {
+          case 1:
+            return 'st';
+          case 2:
+            return 'nd';
+          case 3:
+            return 'rd';
+          default:
+            return 'th';
+        }
+      }
+      
+
+    const date = new Date(dueDate);
+const month = date.toLocaleString('default', { month: 'short' });
+const day = date.getDate();
+const suffix = getOrdinalSuffix(day);
+
+const formattedDate2 = `${month} ${day}${suffix}`;
+// console.log(formattedDate); // Output: Feb 20th
+
     const checkDueDateExpiry = ()=>{
 
         const dueDateMilliSeconds = new Date(formattedDate(dueDate)).getTime();
@@ -277,12 +302,12 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
                         <div className="cardPageContentFooterExpiryDate" 
                         style={
                             {
-                                backgroundColor: status === "done" ? "#63C05B" : (dueDate ? (checkDueDateExpiry() === "expired" ? "#FF0000"   : null ) 
+                                backgroundColor: status === "done" && dueDate ? "#63C05B" : (dueDate ? (checkDueDateExpiry() === "expired" ? "#FF0000"   : null ) 
                                                 :  '#ffffff'),
                                 color: checkDueDateExpiry() === "live" && status !== "done" ? "#000000" : "#ffffff"          
                             }}>
                 
-                        {dueDate ? formattedDate(dueDate) : ""}
+                        {dueDate ? formattedDate2 : ""}
                        
                         </div>
                         <div className="cardPageContentFooterStatusButton">

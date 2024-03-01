@@ -36,11 +36,35 @@ export const Board = (()=>{
     }, []);
 
     const date = new Date();
-    const formattedDate = new Intl.DateTimeFormat('en-GB', {
+    const formatter = new Intl.DateTimeFormat('en-GB', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
-    }).format(date);
+    });
+    
+    const parts = formatter.formatToParts(date);
+    
+    let formattedDate = '';
+    parts.forEach((part, index) => {
+      if (part.type === 'day' && parseInt(part.value) >= 10 && parseInt(part.value) <= 20) {
+        formattedDate += part.value + 'th ';
+      } else if (part.type === 'day' && parseInt(part.value) % 10 === 1) {
+        formattedDate += part.value + 'st ';
+      } else if (part.type === 'day' && parseInt(part.value) % 10 === 2) {
+        formattedDate += part.value + 'nd ';
+      } else if (part.type === 'day' && parseInt(part.value) % 10 === 3) {
+        formattedDate += part.value + 'rd ';
+      } else {
+        formattedDate += part.value + ' ';
+      }
+
+      if(part.type == 'month'){
+        formattedDate = formattedDate.slice(0,formattedDate.length -1);
+        formattedDate += ", ";
+      }
+     
+    });
+    
     
     const [showSorting, setShowSorting] =  useState(false);
     const [isCreateTaskOpen, setCreateTaskOpen] =  useState(false);
@@ -130,7 +154,7 @@ export const Board = (()=>{
 
     const closeChecklist = (status)=>{
 
-      setStatusToCloseChecklist(status + Math.random());
+      setStatusToCloseChecklist(status + Math.random());  //Math.random() for unique status
     }
 
 
@@ -167,6 +191,7 @@ export const Board = (()=>{
                 </div>
                 
                 <div className="boardPageContentMain">
+                <div className="boardPageContentMainSlider">
 
         {/* Backlog */}
 
@@ -316,7 +341,7 @@ export const Board = (()=>{
                     </div>
 
                     
-
+               </div>
                 </div>
             </div>
         </div>

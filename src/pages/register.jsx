@@ -54,7 +54,7 @@ export const Register = (()=>{
 
     const { password, confirmPassword, name, email } = values;
 
-    console.log("pas",name,email,password,confirmPassword);
+    // console.log("pas",name,email,password,confirmPassword);
     if (password !== confirmPassword) {
       setPasswordError("Password and Confirm password must be same");
       setConfirmPasswordError("Password and Confirm password must be same");

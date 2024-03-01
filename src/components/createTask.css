@@ -49,10 +49,8 @@ span{
 
 .createTaskPageContentTitleInput{
     position: absolute;
-    width:98%;
+    width:95%;
     top:45px;
-    /* border:solid gold; */
-    
 }
 
 #createTaskPageContentTitleInput{
@@ -61,13 +59,23 @@ span{
     border-radius: 5px;
     border:none;
     box-shadow: 0px 0px 2px 2px #4D40551A;
-    /* padding:5px; */
+    padding:0 15px;
+    font-size: 16px;
 }
+
+
 
 #createTaskPageContentTitleInput::placeholder {
     color: #9B959F;
 
   }
+
+  #createTaskPageContentTitleInput:hover{
+    box-shadow: 0px 2px 0px 3px #0909091a;
+    /* cursor:pointer; */
+    /* font-size: 16px; */
+
+}
 
 .createTaskPageContentSelectPriority{
     position: absolute;
@@ -107,6 +115,7 @@ span{
     text-align:center;
     /* padding: auto; */
     background-color: white;
+    cursor:pointer;
 
 }
 
@@ -168,9 +177,18 @@ text-align: left;
 }
 
 
+#createTaskPageContentCheckListItem:hover{
+
+    box-shadow: 0px 2px 0px 3px #0909091a;
+    cursor:pointer;
+
+}
+
+
 .createTaskPageContentCheckListItemCheckBox{
     width:20px;
     height: 30px;
+    cursor:pointer;
     /* background-color: #17A2B8; */
 }
 
@@ -207,6 +225,14 @@ text-align: left;
 }
 
 
+.createTaskPageContentCheckListItemAddButton:hover{
+    /* box-shadow: 0px 2px 0px 3px #0909091a; */
+    cursor:pointer;
+    font-size: 20px;
+
+}
+
+
 .createTaskPageContentDateAndButtons{
     width:100%;
     display: flex;
@@ -228,6 +254,15 @@ text-align: left;
   border: none; 
   font-size: 14px;
   font-weight: bold;
+}
+
+#createTaskPageContentButtonCancel:hover,
+#createTaskPageContentButtonSave:hover{
+
+        box-shadow: 0px 2px 0px 3px #0909091a;
+        cursor:pointer;
+        font-size: 16px;
+    
 }
 
 #createTaskPageContentDate{
