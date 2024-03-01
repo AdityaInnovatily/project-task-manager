@@ -103,8 +103,6 @@ export const Board = (()=>{
 //  }
 
 
-  
-
     useEffect(() => {
       // Fetch task data from the API
       const fetchTaskList = async () => {
@@ -214,7 +212,7 @@ export const Board = (()=>{
                                           title = {item?.title} 
                                           priority={item?.priority}
                                           dueDate={item?.dueDate}
-                                          checklist={item?.checklist}
+                                          checklist={[...item?.checklist]}
                                           status = {item?.status}
                                           getNewStatus= { getNewStatus }
                                           getOpenCreateTask={handleOpenCreateTask2}
@@ -256,7 +254,7 @@ export const Board = (()=>{
                                           title = {item?.title} 
                                           priority={item?.priority}
                                           dueDate={item?.dueDate}
-                                          checklist={item?.checklist}
+                                          checklist={[...item?.checklist]}
                                           status = {item?.status}
                                           getNewStatus={getNewStatus}
                                           getOpenCreateTask={handleOpenCreateTask2}
@@ -289,7 +287,7 @@ export const Board = (()=>{
                                           title = {item?.title} 
                                           priority={item?.priority}
                                           dueDate={item?.dueDate}
-                                          checklist={item?.checklist}
+                                          checklist={[...item?.checklist]}
                                           status = {item?.status}
                                           getNewStatus={getNewStatus}
                                           getOpenCreateTask={handleOpenCreateTask2}
@@ -326,7 +324,7 @@ export const Board = (()=>{
                                           title = {item?.title} 
                                           priority={item?.priority}
                                           dueDate={item?.dueDate}
-                                          checklist={item?.checklist}
+                                          checklist={[...item?.checklist]}
                                           status = {item?.status}
                                           getNewStatus={getNewStatus}
                                           getOpenCreateTask={handleOpenCreateTask2}

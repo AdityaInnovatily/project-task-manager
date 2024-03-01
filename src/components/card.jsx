@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
 export const Card = (({id, title, priority, dueDate, checklist, status, getNewStatus, getOpenCreateTask, statusToCloseChecklist })=>{
-    // console.log('kfdsf',checklist);
+    console.log('kfdsf checklist;;;',title, checklist);
     const navigate = useNavigate();
     const localStorageUserDetails =  JSON.parse(localStorage.getItem(process.env.REACT_APP_TASK_MANAGER_LOCALHOST_KEY));
 
@@ -30,7 +30,7 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
       }, []);
 
     const [showMenu, setShowMenu] =  useState(false);
-    const [todos, setTodos] = useState(checklist || []);
+    const [todos, setTodos] = useState([...checklist] || []);
     const [showTodos, setShowTodos] =  useState(false);
     const [dropDownFeatures, setDropDownFeatures] =  useState("");
     const [dueDateDisability, setDueDateDisability] = useState({});
@@ -55,8 +55,8 @@ export const Card = (({id, title, priority, dueDate, checklist, status, getNewSt
         const updatedTodos = [...todos];
         let payload = {...updatedTodos[index]};
         updatedTodos[index].isChecked = !updatedTodos[index].isChecked;
-        setTodos(updatedTodos);
-        checklist = {updatedTodos};
+        setTodos([...updatedTodos]);
+        checklist = [...updatedTodos];
 
 
         await fetch(updateChecklist, {
@@ -279,9 +279,9 @@ const formattedDate2 = `${month} ${day}${suffix}`;
                     
                     {showTodos && (
                         <div className="cardPageContentChecklistItems">
-
+                        {console.log('tododd',todos)}
                         {todos.map((todo, index) => (
-
+                      
                         <div id = "cardPageContentCheckListItem"  key={index}>
                             <input
                             className='cardPageContentCheckListItemCheckBox'

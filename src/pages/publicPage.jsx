@@ -108,6 +108,31 @@ export const PublicPage = (()=>{
 
     }
 
+
+    function getOrdinalSuffix(day) {
+      if (day >= 11 && day <= 13) {
+        return 'th';
+      }
+      switch (day % 10) {
+        case 1:
+          return 'st';
+        case 2:
+          return 'nd';
+        case 3:
+          return 'rd';
+        default:
+          return 'th';
+      }
+    }
+    
+
+  const date = new Date(taskDetails?.dueDate);
+const month = date.toLocaleString('default', { month: 'short' });
+const day = date.getDate();
+const suffix = getOrdinalSuffix(day);
+
+const formattedDate2 = `${month} ${day}${suffix}`;
+
     
 
     return <>
@@ -178,7 +203,8 @@ export const PublicPage = (()=>{
                     Due Date
                 <div className="publicPageContentFooterExpiryDate">
         
-                 {taskDetails?.dueDate ? formattedDate(taskDetails?.dueDate) : ""}
+                 {/* {taskDetails?.dueDate ? formattedDate(taskDetails?.dueDate) : ""} */}
+                 {taskDetails?.dueDate ? formattedDate2 : ""}
                
                 </div>
                

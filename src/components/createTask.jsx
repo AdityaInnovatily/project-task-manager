@@ -132,7 +132,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
 
     const { title, priority, checklist } = createTask;
 
-    console.log("zzzsafs",createTask);
+    // console.log("zzzsafs",createTask);
 
    
     if (!title) {
@@ -183,10 +183,10 @@ export const CreateTask = (({taskId, getNewStatus})=>{
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(
-          {taskId: taskId,
+          { taskId: taskId,
             title:title,
             priority:priority,
-            checklist:checklist,
+            checklist:[...checklist],
             dueDate:dueDate,
             status:status,
             userId:userId
@@ -204,7 +204,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
           body: JSON.stringify(
            { title:title,
             priority:priority,
-            checklist:checklist,
+            checklist:[...checklist],
             dueDate:dueDate,
             status:status,
             userId:userId
@@ -223,15 +223,22 @@ export const CreateTask = (({taskId, getNewStatus})=>{
           
             if(taskId){
               // continue;
-              toast.success("task updated successfully", toastOptions);
+              // toast.success("task updated successfully", toastOptions);
+
+              setTimeout(()=>{
+                getNewStatus("render the board page" + Math.random());
+              },200);
+         
             
             }else{
-              toast.success("task created successfully", toastOptions);
+              // toast.success("task created successfully", toastOptions);
+
+              setTimeout(()=>{
+                getNewStatus("render the board page" + Math.random());
+              },200);
             }
 
-            setTimeout(()=>{
-              getNewStatus("render the board page");
-            },1200);
+           
             
             setDivStyle({ display: 'none' });
            
@@ -255,6 +262,31 @@ export const CreateTask = (({taskId, getNewStatus})=>{
                             return formattedDate;
                         
 }
+
+
+const handleChecklistCount = ((checklist) => {
+        
+  // getNewStatus("checklist updated");
+
+// console.log("sakfjsa;f", checklist);
+
+  let checkedCount = 0;
+
+  if(checklist.length>0){
+
+   for(let item of checklist){
+
+      if(item.isChecked){
+          checkedCount++;
+      }
+   }
+
+  }
+
+  return checkedCount;
+
+});
+
 
     return(<>
      <div className="createTaskPage" style = {divStyle}>
@@ -304,7 +336,7 @@ export const CreateTask = (({taskId, getNewStatus})=>{
         </div>
         
         <div className="createTaskPageContentCheckList">
-        <div className="createTaskPageContentCheckListText">Checklist (0/0)<span>*</span></div>
+        <div className="createTaskPageContentCheckListText">Checklist ({handleChecklistCount(createTask?.checklist)}/{createTask?.checklist.length})<span>*</span></div>
 
         <div className="createTaskPageContentCheckListItems">
       
