@@ -185,12 +185,34 @@ text-align: left;
 }
 
 
-.createTaskPageContentCheckListItemCheckBox{
-    width:20px;
-    height: 30px;
-    cursor:pointer;
-    /* background-color: #17A2B8; */
-}
+.createTaskPageContentCheckListItemCheckBox {
+    /* Hide the default checkbox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Create a custom checkbox */
+    width: 23px;
+    height: 23px;
+    border: 2px solid #0909091a;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .createTaskPageContentCheckListItemCheckBox:checked::before {
+    content: '\2714'; 
+    /* Unicode checkmark character */
+    display: inline-block;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    background-color: #17A2B8;
+    color: #ffffff; /* Set the color of the checkmark to the custom property */
+    text-align: center;
+    line-height: 18px;
+    border-radius: 5px;
+  }
+  
+
 
 
 

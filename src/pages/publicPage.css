@@ -127,12 +127,41 @@
     /* border:solid red; */
 }
 
-.publicPageContentCheckListItemCheckBox{
-    width:20px;
-    height: 30px;
-    /* border: solid yellow; */
+
+#publicPageContentCheckListItem:hover{
+    box-shadow: 0px 2px 0px 2px #0909091a;
+    cursor:pointer;
 
 }
+
+.publicPageContentCheckListItemCheckBox {
+    /* Hide the default checkbox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Create a custom checkbox */
+    width: 23px;
+    height: 23px;
+    border: 2px solid #0909091a;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .publicPageContentCheckListItemCheckBox:checked::before {
+    content: '\2714'; 
+    /* Unicode checkmark character */
+    display: inline-block;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    background-color: #17A2B8;
+    color: #ffffff; /* Set the color of the checkmark to the custom property */
+    text-align: center;
+    line-height: 18px;
+    border-radius: 5px;
+  }
+  
+
 
 .publicPageContentCheckListItemTextArea{
     border:none;
@@ -140,7 +169,7 @@
     height:25px;
     text-align: left;
     /* border: solid green; */
-    
+    font-size: 20px;
 }
 
 
